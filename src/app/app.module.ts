@@ -23,6 +23,13 @@ import { AppButtonComponent } from './components/app-button/app-button.component
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import { UserDropdownMenuComponent } from './pages/main/header/user-dropdown-menu/user-dropdown-menu.component';
+import { PersonalComponent } from './views/personal/personal.component';
+import { InstitucionComponent } from './views/institucion/institucion.component';
+import { InstFormComponent } from './views/institucion/inst-form/inst-form.component';
+import { InstListComponent } from './views/institucion/inst-list/inst-list.component';
+import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
+import { PersListComponent } from './views/personal/pers-list/pers-list.component';
+import { AsistenciaComponent } from './views/asistencia/asistencia.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -42,6 +49,13 @@ registerLocaleData(localeEn, 'en-EN');
     NotificationsDropdownMenuComponent,
     AppButtonComponent,
     UserDropdownMenuComponent,
+    PersonalComponent,
+    InstitucionComponent,
+    InstFormComponent,
+    InstListComponent,
+    PersFormComponent,
+    PersListComponent,
+    AsistenciaComponent,
   ],
   imports: [
     BrowserModule,

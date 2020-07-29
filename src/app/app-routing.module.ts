@@ -6,8 +6,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { PersonalComponent } from './views/personal/personal.component';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { NonAuthGuard } from './utils/guards/non-auth.guard';
+import { InstitucionComponent } from './views/institucion/institucion.component';
+import { InstListComponent } from './views/institucion/inst-list/inst-list.component';
+import { PersListComponent } from './views/personal/pers-list/pers-list.component';
+import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
+import { InstFormComponent } from './views/institucion/inst-form/inst-form.component';
+import { AsistenciaComponent } from './views/asistencia/asistencia.component';
 
 const routes: Routes = [
   {
@@ -23,6 +30,26 @@ const routes: Routes = [
       {
         path: 'blank',
         component: BlankComponent,
+      },
+      {
+        path: 'personal/list',
+        component: PersListComponent,
+      },
+      {
+        path: 'personal/add',
+        component: PersFormComponent,
+      },
+      {
+        path: 'institucion/list',
+        component: InstListComponent,
+      },
+      {
+        path: 'institucion/add',
+        component: InstFormComponent,
+      },
+      {
+        path: 'asistencia',
+        component: AsistenciaComponent,
       },
       {
         path: '',

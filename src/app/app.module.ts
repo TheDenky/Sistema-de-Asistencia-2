@@ -1,5 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -69,6 +74,11 @@ registerLocaleData(localeEn, 'en-EN');
       preventDuplicates: true,
     }),
     NgbModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatTabsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

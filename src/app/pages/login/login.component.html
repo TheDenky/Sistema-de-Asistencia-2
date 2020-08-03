@@ -1,23 +1,23 @@
 <div class="login-box">
   <div class="login-logo">
-    <a [routerLink]="['/']"><b>Admin</b>LTE</a>
+    <a [routerLink]="['/']"><b>Ugel</b>Andahuaylas</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Accede para iniciar Sesión</p>
 
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="input-group mb-3">
           <input
             formControlName="email"
-            type="email"
+            type="text"
             class="form-control"
-            placeholder="Email"
+            placeholder="Usuario"
           />
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
             <app-button
               [type]="'submit'"
               [block]="true"
-              [text]="'Sign In'"
+              [text]="'Acceder'"
               [loading]="isAuthLoading"
             ></app-button>
           </div>

@@ -1,5 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +14,7 @@ import { HeaderComponent } from './pages/main/header/header.component';
 import { FooterComponent } from './pages/main/footer/footer.component';
 import { MenuSidebarComponent } from './pages/main/menu-sidebar/menu-sidebar.component';
 import { BlankComponent } from './views/blank/blank.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProfileComponent } from './views/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './pages/register/register.component';
@@ -23,6 +28,13 @@ import { AppButtonComponent } from './components/app-button/app-button.component
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import { UserDropdownMenuComponent } from './pages/main/header/user-dropdown-menu/user-dropdown-menu.component';
+import { PersonalComponent } from './views/personal/personal.component';
+import { InstitucionComponent } from './views/institucion/institucion.component';
+import { InstFormComponent } from './views/institucion/inst-form/inst-form.component';
+import { InstListComponent } from './views/institucion/inst-list/inst-list.component';
+import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
+import { PersListComponent } from './views/personal/pers-list/pers-list.component';
+import { AsistenciaComponent } from './views/asistencia/asistencia.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -42,11 +54,19 @@ registerLocaleData(localeEn, 'en-EN');
     NotificationsDropdownMenuComponent,
     AppButtonComponent,
     UserDropdownMenuComponent,
+    PersonalComponent,
+    InstitucionComponent,
+    InstFormComponent,
+    InstListComponent,
+    PersFormComponent,
+    PersListComponent,
+    AsistenciaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 10000,
@@ -54,6 +74,11 @@ registerLocaleData(localeEn, 'en-EN');
       preventDuplicates: true,
     }),
     NgbModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatTabsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

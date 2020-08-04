@@ -7,12 +7,12 @@ import {
   UrlSegment,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  UrlTree
+  UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NonAuthGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivate(
@@ -35,6 +35,7 @@ export class NonAuthGuard implements CanActivate, CanActivateChild, CanLoad {
     | UrlTree {
     return true;
   }
+  //canLoad is para actualizar
   canLoad(
     route: Route,
     segments: UrlSegment[]

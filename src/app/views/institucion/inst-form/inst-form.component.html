@@ -49,70 +49,114 @@
         <!-- Empieza el formulario-->
         <div class="container">
           <form>
+            <h2><p>Datos de Identificación</p></h2>
+            <hr />
             <div class="form-row">
               <div class="col-md-6 mb-3">
-                <label for="validationDefault01">First name</label>
+                <label for="validationDefault01"
+                  >Nombre de la Instutución</label
+                >
                 <input
                   type="text"
                   class="form-control"
                   id="validationDefault01"
-                  value="Mark"
+                  placeholder=""
                   required
                 />
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="validationDefault02">Last name</label>
+
+              <div class="col-md-3 mb-3">
+                <label for="validationDefault05">Codigo Modular</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
-                  id="validationDefault02"
-                  value="Otto"
-                  required
-                />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-6 mb-3">
-                <label for="validationDefault03">City</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="validationDefault03"
+                  id="validationDefault05"
                   required
                 />
               </div>
               <div class="col-md-3 mb-3">
-                <label for="validationDefault04">State</label>
-                <select class="custom-select" id="validationDefault04" required>
-                  <option selected disabled value="">Choose...</option>
-                  <option>...</option>
-                </select>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="validationDefault05">Zip</label>
+                <label for="validationDefault05">Número</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="validationDefault05"
                   required
                 />
               </div>
             </div>
-            <div class="form-group">
-              <div class="form-check">
+            <hr />
+            <h2><p>Datos de Ubicación</p></h2>
+            <hr />
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault04">Departamento</label>
+                <select class="custom-select" id="validationDefault04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault04">Provincia</label>
+                <select class="custom-select" id="validationDefault04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault04">Distrito</label>
+                <select class="custom-select" id="validationDefault04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="validationDefault01">Dirección</label>
                 <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="invalidCheck2"
+                  type="text"
+                  class="form-control"
+                  id="validationDefault01"
+                  placeholder=""
                   required
                 />
-                <label class="form-check-label" for="invalidCheck2">
-                  Agree to terms and conditions
-                </label>
               </div>
             </div>
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <hr />
+            <h2><p>Datos Académicos</p></h2>
+            <hr />
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault04">Nivel</label>
+                <select class="custom-select" id="validationDefault04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>Inicial</option>
+                  <option>Primaria</option>
+                  <option>Secundaria</option>
+                  <option>Instituto</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault04">Modalidad</label>
+                <select class="custom-select" id="validationDefault04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>EBR</option>
+                  <option>EBA</option>
+                  <option>JEC</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault04">Turno</label>
+                <select class="custom-select" id="validationDefault04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>Mañana</option>
+                  <option>Tarde</option>
+                  <option>Noche</option>
+                </select>
+              </div>
+            </div>
+            <hr />
+            <button class="btn btn-primary col-md-3" type="submit">
+              Grabar
+            </button>
           </form>
         </div>
       </div>

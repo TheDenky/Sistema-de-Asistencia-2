@@ -67,6 +67,7 @@ registerLocaleData(localeEn, 'en-EN');
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 10000,

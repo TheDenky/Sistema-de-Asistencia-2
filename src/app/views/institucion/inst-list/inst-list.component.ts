@@ -4,41 +4,51 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
-export interface PeriodicElement {
-  codModular: string;
-  nombre: string;
-  direccion: string;
-  numero: string;
-  nivel: string;
-  modalidad: string;
-  turno: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [];
+import { InstitucionService } from '../../../services/institucion.service';
+import { Institucion } from '../../../models/institucion';
+
 @Component({
   selector: 'app-inst-list',
   templateUrl: './inst-list.component.html',
   styleUrls: ['./inst-list.component.scss'],
+  providers: [InstitucionService],
 })
 export class InstListComponent implements OnInit {
+  ELEMENT_DATA: Institucion[];
   displayedColumns: string[] = [
-    'codModular',
-    'nombre',
-    'direccion',
-    'numero',
-    'nivel',
-    'modalidad',
-    'turno',
+    'codiModuInst',
+    'nombInst',
+    'numeInst',
+    'niveEduInst',
+    'modaInst',
+    'turnInst',
+    'direInst',
     'ACTION',
   ];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Institucion>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {}
+  constructor(private instservice: InstitucionService) {}
+  insti: any = [];
 
   ngOnInit(): void {
+    this.obtenerinst();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+  public obtenerinst() {
+    let ins = this.instservice.getinst();
+    ins.subscribe((report) => (this.dataSource.data = report as Institucion[]));
+  }
+  public instob(id: string) {
+    this.instservice.instget(id).subscribe(
+      (res) => {
+        console.log(res);
+        this.insti = res;
+      },
+      (err) => console.error(err)
+    );
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

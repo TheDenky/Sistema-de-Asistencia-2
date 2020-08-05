@@ -46,6 +46,17 @@
         </div>
       </div>
       <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <input
+              class="form-control"
+              matInput
+              (keyup)="applyFilter($event.target.value)"
+              placeholder="Buscar Institución"
+            />
+          </div>
+        </div>
+        <br />
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource">
             <!-- Codigo Modular Column -->

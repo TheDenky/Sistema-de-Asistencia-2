@@ -4,7 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +35,8 @@ import { InstListComponent } from './views/institucion/inst-list/inst-list.compo
 import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
 import { PersListComponent } from './views/personal/pers-list/pers-list.component';
 import { AsistenciaComponent } from './views/asistencia/asistencia.component';
+import { AuthService } from './utils/services/auth.service';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -80,7 +82,14 @@ registerLocaleData(localeEn, 'en-EN');
     MatTabsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

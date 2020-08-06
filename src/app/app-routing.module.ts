@@ -8,7 +8,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { PersonalComponent } from './views/personal/personal.component';
 import { AuthGuard } from './utils/guards/auth.guard';
-import { NonAuthGuard } from './utils/guards/non-auth.guard';
+// import { NonAuthGuard } from './utils/guards/non-auth.guard';
 import { InstitucionComponent } from './views/institucion/institucion.component';
 import { InstListComponent } from './views/institucion/inst-list/inst-list.component';
 import { PersListComponent } from './views/personal/pers-list/pers-list.component';
@@ -64,7 +64,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [NonAuthGuard],
+    // canActivate: [NonAuthGuard],
   },
   { path: '**', redirectTo: '' },
 ];

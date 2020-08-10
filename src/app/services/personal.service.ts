@@ -17,15 +17,19 @@ export class PersonalService {
   getOnePersonal(id: string) {
     return this.http.get(`/api/personal/${id}`);
   }
-  /**
-  savePersonal(personal: Personal){
-    return this.http.post(`${this.API_URI}/personal`, personal);
+
+  savePersonal(personal: Personal) {
+    return this.http.post(`/api/personal`, personal);
   }
-  updatePersonal(id: string, updatedPersonal: Personal): Observable<Personal>{
-    return this.http.put(`${this.API_URI}/personal/${id}`, updatedPersonal);
+
+  updatePersonal(
+    id: string | number,
+    updatedPersonal: Personal
+  ): Observable<Personal> {
+    return this.http.put(`/api/personal/${id}`, updatedPersonal);
   }
-  deletePersonal(id: string){
-    return this.http.delete(`${this.API_URI}/personal/${id}`);
+
+  deletePersonal(id: string) {
+    return this.http.delete(`/api/personal/${id}`);
   }
-   */
 }

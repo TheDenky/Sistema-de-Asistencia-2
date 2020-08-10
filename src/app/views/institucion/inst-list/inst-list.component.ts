@@ -41,6 +41,9 @@ export class InstListComponent implements OnInit {
     let ins = this.instservice.getinst();
     ins.subscribe((report) => (this.dataSource.data = report as Institucion[]));
   }
+  editInstitucion(id: string) {
+    console.log(id);
+  }
   public instob(id: string) {
     this.instservice.instget(id).subscribe(
       (res) => {

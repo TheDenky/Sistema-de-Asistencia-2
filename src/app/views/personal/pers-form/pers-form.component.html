@@ -22,7 +22,13 @@
   <div class="container-fluid">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Registro de personal</h3>
+        <button
+          class="btn btn-secondary col-md-2"
+          type="submit"
+          [routerLink]="['/institucion/list']"
+        >
+          Cancelar
+        </button>
 
         <div class="card-tools">
           <button
@@ -56,6 +62,8 @@
                 <input
                   type="text"
                   class="form-control"
+                  [(ngModel)]="personal.nombPers"
+                  name="nombPers"
                   id="inputEmail4"
                   required
                 />
@@ -63,6 +71,8 @@
                 <input
                   type="text"
                   class="form-control"
+                  [(ngModel)]="personal.dniPers"
+                  name="dniPers"
                   id="inputnumber"
                   required
                 />
@@ -73,6 +83,8 @@
                 <input
                   type="text"
                   class="form-control"
+                  [(ngModel)]="personal.apelPatePers"
+                  name="apelPatePers"
                   id="inputPassword4"
                   required
                 />
@@ -80,6 +92,8 @@
                 <input
                   type="text"
                   class="form-control"
+                  [(ngModel)]="personal.apelMatePers"
+                  name="apelMatePers"
                   id="inputPassword4"
                   required
                 />
@@ -107,33 +121,52 @@
             <h2><p>Especificaciones laborales</p></h2>
             <hr />
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputAddress2">Cargo</label>
-                <Select class="form-control" required>
-                  <option selected>Cargo</option>
-                  <option></option>
-                  <option></option>
-                </Select>
-
-                <label for="inputAddress2">Contrato</label>
-                <Select class="form-control" required>
-                  <option selected>Tipo de contrato</option>
-                  <option></option>
-                  <option></option>
-                </Select>
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault04">Cargo</label>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="personal.cargPers"
+                  name="cargPers"
+                  required
+                >
+                  <option selected disabled value="">Selecciona...</option>
+                  <option>Docente</option>
+                  <option>Director</option>
+                  <option>Administrativo</option>
+                  <option>Conserje</option>
+                </select>
               </div>
-
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault04">Contrato</label>
+                <select
+                  class="form-control"
+                  [(ngModel)]="personal.contLaboPers"
+                  name="contLaboPers"
+                  required
+                >
+                  <option selected disabled value="">Selecciona...</option>
+                  <option>Nombrado</option>
+                  <option>Contratado</option>
+                </select>
+              </div>
               <div class="form-group col-md-6">
                 <label for="inputAddress2">Jornada</label>
-                <Select class="form-control" required>
-                  <option selected>Duracion de la jornada</option>
-                  <option></option>
-                  <option></option>
-                </Select>
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="personal.jornLaboPers"
+                  name="jornLaboPers"
+                  id="inputPassword4"
+                  required
+                />
               </div>
             </div>
             <hr />
-            <button type="submit" class="btn btn-primary col-md-3">
+            <button
+              type="submit"
+              class="btn btn-primary col-md-3"
+              (click)="edit ? updatePersonal() : saveNewPersonal()"
+            >
               Grabar
             </button>
           </form>

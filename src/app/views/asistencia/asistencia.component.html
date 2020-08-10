@@ -21,32 +21,80 @@
   <!-- Default box -->
   <div class="container-fluid">
     <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Formulario</h3>
-
-        <div class="card-tools">
-          <button
-            type="button"
-            class="btn btn-tool"
-            data-widget="collapse"
-            data-toggle="tooltip"
-            title="Collapse"
-          >
-            <i class="fa fa-minus"></i>
-          </button>
-          <button
-            type="button"
-            class="btn btn-tool"
-            data-widget="remove"
-            data-toggle="tooltip"
-            title="Remove"
-          >
-            <i class="fa fa-times"></i>
-          </button>
-        </div>
-      </div>
       <div class="card-body">
-        AQUI VA EL CONTENIDO!
+        <mat-form-field color="accent" appearance="fill">
+          <mat-label>Fecha</mat-label>
+          <input matInput [matDatepicker]="picker1" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <hr />
+        <div class="row">
+          <div class="col">
+            <input
+              class="form-control"
+              matInput
+              (keyup)="applyFilter($event.target.value)"
+              placeholder="Buscar Personal"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="dniPers">
+              <th mat-header-cell *matHeaderCellDef>DNI</th>
+              <td mat-cell *matCellDef="let element">{{ element.dniPers }}</td>
+            </ng-container>
+            <ng-container matColumnDef="nombPers">
+              <th mat-header-cell *matHeaderCellDef>Nombres</th>
+              <td mat-cell *matCellDef="let element">{{ element.nombPers }}</td>
+            </ng-container>
+            <ng-container matColumnDef="apelPatePers">
+              <th mat-header-cell *matHeaderCellDef>Apellido Paterno</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.apelPatePers }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="apelMatePers">
+              <th mat-header-cell *matHeaderCellDef>Apellido Materno</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.apelMatePers }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ACTION">
+              <th mat-header-cell *matHeaderCellDef>
+                <select class="custom-select" required>
+                  <option selected value="">All Asistió</option>
+                  <option>All Tarde</option>
+                  <option>All Permiso</option>
+                  <option>All Licencia</option>
+                  <option>All No asistió</option>
+                </select>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <select class="custom-select" required>
+                  <option selected value="">Asistió</option>
+                  <option>Tarde</option>
+                  <option>Permiso</option>
+                  <option>Licencia</option>
+                  <option>No asistió</option>
+                </select>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+        <hr />
+        <button class="btn btn-primary col-md-4" type="submit">
+          Grabar
+        </button>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">

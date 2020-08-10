@@ -40,11 +40,19 @@ const routes: Routes = [
         component: PersFormComponent,
       },
       {
+        path: 'personal/edit/:id',
+        component: PersFormComponent,
+      },
+      {
         path: 'institucion/list',
         component: InstListComponent,
       },
       {
         path: 'institucion/add',
+        component: InstFormComponent,
+      },
+      {
+        path: 'institucion/edit/:id',
         component: InstFormComponent,
       },
       {

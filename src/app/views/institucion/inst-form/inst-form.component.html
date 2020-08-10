@@ -22,8 +22,13 @@
   <div class="container-fluid">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Formulario</h3>
-
+        <button
+          class="btn btn-secondary col-md-2"
+          type="submit"
+          [routerLink]="['/institucion/list']"
+        >
+          Cancelar
+        </button>
         <div class="card-tools">
           <button
             type="button"
@@ -58,7 +63,10 @@
                 >
                 <input
                   type="text"
+                  [(ngModel)]="institucion.nombInst"
+                  name="nombInst"
                   class="form-control"
+                  maxlength="100"
                   id="validationDefault01"
                   placeholder=""
                   required
@@ -69,8 +77,10 @@
                 <label for="validationDefault05">Codigo Modular</label>
                 <input
                   type="number"
+                  [(ngModel)]="institucion.codiModuInst"
+                  name="codiModuInst"
                   class="form-control"
-                  id="validationDefault05"
+                  max="99999999"
                   required
                 />
               </div>
@@ -78,6 +88,8 @@
                 <label for="validationDefault05">Número</label>
                 <input
                   type="number"
+                  [(ngModel)]="institucion.numeInst"
+                  name="numeInst"
                   class="form-control"
                   id="validationDefault05"
                   required
@@ -90,29 +102,60 @@
             <div class="form-row">
               <div class="col-md-4 mb-3">
                 <label for="validationDefault04">Departamento</label>
-                <select class="custom-select" id="validationDefault04" required>
-                  <option selected disabled value="">Choose...</option>
-                  <option>...</option>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="selectedRegion.id"
+                  name="region"
+                  (change)="onSelectRegion($event.target.value)"
+                  required
+                >
+                  <!--<option selected disabled value="">Choose...</option>-->
+                  <option
+                    *ngFor="let region of regiones"
+                    value="{{ region.id }}"
+                    >{{ region.name }}</option
+                  >
                 </select>
               </div>
-              <div class="col-md-4 mb-3">
+              <div class="col-md-4 mb-3" *ngIf="provincias?.length > 0">
                 <label for="validationDefault04">Provincia</label>
-                <select class="custom-select" id="validationDefault04" required>
-                  <option selected disabled value="">Choose...</option>
-                  <option>...</option>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="selectedProvincia.id"
+                  name="provincia"
+                  (change)="onSelectProvincia($event.target.value)"
+                  required
+                >
+                  <!--<option selected disabled value="">Choose...</option>-->
+                  <option
+                    *ngFor="let provincia of provincias"
+                    value="{{ provincia.id }}"
+                    >{{ provincia.name }}</option
+                  >
                 </select>
               </div>
-              <div class="col-md-4 mb-3">
+              <div class="col-md-4 mb-3" *ngIf="distritos?.length > 0">
                 <label for="validationDefault04">Distrito</label>
-                <select class="custom-select" id="validationDefault04" required>
-                  <option selected disabled value="">Choose...</option>
-                  <option>...</option>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="institucion.idDist"
+                  name="idDist"
+                  required
+                >
+                  <!--<option selected disabled value="">Choose...</option>-->
+                  <option
+                    *ngFor="let distrito of distritos"
+                    value="{{ distrito.id }}"
+                    >{{ distrito.name }}</option
+                  >
                 </select>
               </div>
-              <div class="col-md-6 mb-3">
+              <div class="col-md-12 mb-3">
                 <label for="validationDefault01">Dirección</label>
                 <input
                   type="text"
+                  [(ngModel)]="institucion.direInst"
+                  name="direInst"
                   class="form-control"
                   id="validationDefault01"
                   placeholder=""
@@ -126,8 +169,13 @@
             <div class="form-row">
               <div class="col-md-4 mb-3">
                 <label for="validationDefault04">Nivel</label>
-                <select class="custom-select" id="validationDefault04" required>
-                  <option selected disabled value="">Choose...</option>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="institucion.niveEduInst"
+                  name="niveEduInst"
+                  required
+                >
+                  <option selected disabled value="">Selecciona...</option>
                   <option>Inicial</option>
                   <option>Primaria</option>
                   <option>Secundaria</option>
@@ -136,8 +184,13 @@
               </div>
               <div class="col-md-4 mb-3">
                 <label for="validationDefault04">Modalidad</label>
-                <select class="custom-select" id="validationDefault04" required>
-                  <option selected disabled value="">Choose...</option>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="institucion.modaInst"
+                  name="modaInst"
+                  required
+                >
+                  <option selected disabled value="">Selecciona...</option>
                   <option>EBR</option>
                   <option>EBA</option>
                   <option>JEC</option>
@@ -145,8 +198,13 @@
               </div>
               <div class="col-md-4 mb-3">
                 <label for="validationDefault04">Turno</label>
-                <select class="custom-select" id="validationDefault04" required>
-                  <option selected disabled value="">Choose...</option>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="institucion.turnInst"
+                  name="turnInst"
+                  required
+                >
+                  <option selected disabled value="">Selecciona...</option>
                   <option>Mañana</option>
                   <option>Tarde</option>
                   <option>Noche</option>
@@ -154,7 +212,11 @@
               </div>
             </div>
             <hr />
-            <button class="btn btn-primary col-md-3" type="submit">
+            <button
+              class="btn btn-primary col-md-3"
+              type="submit"
+              (click)="edit ? updateInstitucion() : SaveNewInstitucion()"
+            >
               Grabar
             </button>
           </form>

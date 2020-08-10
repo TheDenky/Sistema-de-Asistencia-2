@@ -112,7 +112,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-warning"
-                  (click)="instob(element.idInst)"
+                  [routerLink]="['/institucion/edit', element.idInst]"
                   data-toggle="modal"
                   data-target="#ventanaModal"
                 >

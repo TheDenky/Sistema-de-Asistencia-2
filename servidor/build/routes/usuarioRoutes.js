@@ -1,28 +1,22 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-const express_1 = require('express');
-const usuarioController_1 = require('../Controllers/usuarioController');
-class UsuarioRoutes {
-  constructor() {
-    this.router = express_1.Router();
-    this.config();
-  }
-  config() {
-    this.router.get('/', usuarioController_1.usuarioController.listarUsuario);
-    this.router.get(
-      '/:id',
-      usuarioController_1.usuarioController.getOneUsuario
-    );
-    this.router.post('/', usuarioController_1.usuarioController.crearUsuario);
-    this.router.put(
-      '/:id',
-      usuarioController_1.usuarioController.modificarUsuario
-    );
-    this.router.delete(
-      '/:id',
-      usuarioController_1.usuarioController.borrarUsuario
-    );
-  }
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const usuarioController_1 = __importDefault(require("../Controllers/usuarioController"));
+class UserRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.post('/register', usuarioController_1.default.create);
+        this.router.post('/login', usuarioController_1.default.login);
+        this.router.post('/logout', usuarioController_1.default.salir);
+        this.router.post('refresh', usuarioController_1.default.refresh);
+        this.router.get('/home', usuarioController_1.default.inicio);
+    }
 }
-const usuarioRoutes = new UsuarioRoutes();
-exports.default = usuarioRoutes.router;
+const userRoutes = new UserRoutes();
+exports.default = userRoutes.router;

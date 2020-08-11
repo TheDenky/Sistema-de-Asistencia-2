@@ -1,10 +1,10 @@
 import mysql from 'promise-mysql';
 import keys from './keys';
 
-const pool = mysql.createPool(keys.database);
+const poolDB = mysql.createPool(keys.database);
 
-pool.getConnection().then((connection) => {
-  pool.releaseConnection(connection);
+poolDB.getConnection().then((connection) => {
+  poolDB.releaseConnection(connection);
   console.log('db conectada');
 });
-export default pool;
+export default poolDB;

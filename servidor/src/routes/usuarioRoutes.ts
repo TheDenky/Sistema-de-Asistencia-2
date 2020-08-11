@@ -1,18 +1,21 @@
 import { Router } from 'express';
-import { usuarioController } from '../Controllers/usuarioController';
+import userController from '../Controllers/usuarioController';
 
-class UsuarioRoutes {
+class UserRoutes {
   public router: Router = Router();
+
   constructor() {
     this.config();
   }
   config(): void {
-    this.router.get('/', usuarioController.listarUsuario);
-    this.router.get('/:id', usuarioController.getOneUsuario);
-    this.router.post('/', usuarioController.crearUsuario);
-    this.router.put('/:id', usuarioController.modificarUsuario);
-    this.router.delete('/:id', usuarioController.borrarUsuario);
+    this.router.post('/register', userController.create);
+    this.router.post('/login', userController.login);
+    this.router.post('/logout', userController.salir);
+    this.router.post('refresh', userController.refresh);
+    this.router.get('/home', userController.inicio);
   }
 }
-const usuarioRoutes = new UsuarioRoutes();
-export default usuarioRoutes.router;
+
+const userRoutes = new UserRoutes();
+
+export default userRoutes.router;

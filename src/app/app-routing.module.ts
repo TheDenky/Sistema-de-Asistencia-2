@@ -17,11 +17,12 @@ import { InstFormComponent } from './views/institucion/inst-form/inst-form.compo
 import { AsistenciaComponent } from './views/asistencia/asistencia.component';
 
 const routes: Routes = [
+  {path: '', pathMatch: 'full', redirectTo: '/login'},
   {
-    path: '',
+    path: 'home',
     component: MainComponent,
     canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    //canActivateChild: [AuthGuard],
     children: [
       {
         path: 'profile',
@@ -68,14 +69,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [NonAuthGuard],
+    //canActivate: [NonAuthGuard],
   },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [NonAuthGuard],
+    //canActivate: [NonAuthGuard],
   },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '/login' },
 ];
 
 @NgModule({

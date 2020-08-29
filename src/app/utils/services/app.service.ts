@@ -8,7 +8,7 @@ export class AppService {
   public user = {
     firstName: 'Alexander',
     lastName: 'Pierce',
-    image: 'assets/img/user2-160x160.jpg',
+    image: 'assets/img/unajma.png',
   };
 
   constructor(private router: Router) {}

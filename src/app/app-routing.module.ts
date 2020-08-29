@@ -15,6 +15,10 @@ import { PersListComponent } from './views/personal/pers-list/pers-list.componen
 import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
 import { InstFormComponent } from './views/institucion/inst-form/inst-form.component';
 import { AsistenciaComponent } from './views/asistencia/asistencia.component';
+import { ConsultarComponent } from './views/asistencia/consultar/consultar.component';
+import { RegistrarComponent } from './views/asistencia/registrar/registrar.component';
+import { UsuarioFormComponent } from './views/usuario/usuario-form/usuario-form.component';
+import { UsuarioListComponent } from './views/usuario/usuario-list/usuario-list.component';
 
 const routes: Routes = [
   {
@@ -56,8 +60,20 @@ const routes: Routes = [
         component: InstFormComponent,
       },
       {
-        path: 'asistencia',
-        component: AsistenciaComponent,
+        path: 'asistencia/register',
+        component: RegistrarComponent,
+      },
+      {
+        path: 'asistencia/list',
+        component: ConsultarComponent,
+      },
+      {
+        path: 'usuario/add',
+        component: UsuarioFormComponent,
+      },
+      {
+        path: 'usuario/list',
+        component: UsuarioListComponent,
       },
       {
         path: '',

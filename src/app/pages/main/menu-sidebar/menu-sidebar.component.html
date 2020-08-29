@@ -36,7 +36,30 @@
       >
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tasks"></i>
+            <p>
+              Asistencia
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['/asistencia/register']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Registrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/asistencia/list']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Consultar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!--
         <li class="nav-item">
           <a [routerLink]="['/asistencia']" class="nav-link">
             <i class="nav-icon fas fa-tasks"></i>
@@ -45,6 +68,7 @@
             </p>
           </a>
         </li>
+        -->
         <li class="nav-header">ACTORES</li>
         <!--Inicio Personal-->
         <li class="nav-item has-treeview">
@@ -134,6 +158,31 @@
           </ul>
         </li>
         <!--Fin Trámite-->
+        <li class="nav-header">ACCESO</li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Usuario
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['/usuario/add']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Agregar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/usuario/list']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Lista</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!--Fin de acceso-->
         <li class="nav-header">REPORTES</li>
         <li class="nav-item">
           <a [routerLink]="['/']" class="nav-link">
@@ -151,6 +200,7 @@
             </p>
           </a>
         </li>
+        
         <!--
         <li class="nav-header">MULTI LEVEL EXAMPLE</li>
         <li class="nav-item">

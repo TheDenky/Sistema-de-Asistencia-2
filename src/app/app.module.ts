@@ -39,6 +39,11 @@ import { InstListComponent } from './views/institucion/inst-list/inst-list.compo
 import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
 import { PersListComponent } from './views/personal/pers-list/pers-list.component';
 import { AsistenciaComponent } from './views/asistencia/asistencia.component';
+import { RegistrarComponent } from './views/asistencia/registrar/registrar.component';
+import { ConsultarComponent } from './views/asistencia/consultar/consultar.component';
+import { UsuarioComponent } from './views/usuario/usuario.component';
+import { UsuarioFormComponent } from './views/usuario/usuario-form/usuario-form.component';
+import { UsuarioListComponent } from './views/usuario/usuario-list/usuario-list.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -65,6 +70,11 @@ registerLocaleData(localeEn, 'en-EN');
     PersFormComponent,
     PersListComponent,
     AsistenciaComponent,
+    RegistrarComponent,
+    ConsultarComponent,
+    UsuarioComponent,
+    UsuarioFormComponent,
+    UsuarioListComponent,
   ],
   imports: [
     BrowserModule,

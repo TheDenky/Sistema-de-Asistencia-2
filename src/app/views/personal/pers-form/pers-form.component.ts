@@ -50,7 +50,7 @@ export class PersFormComponent implements OnInit {
     this.personalService.savePersonal(this.personal).subscribe(
       (res) => {
         console.log(res);
-        this.router.navigate(['/institucion/list']);
+        this.router.navigate(['/personal/list']);
       },
       (err) => console.error(err)
     );

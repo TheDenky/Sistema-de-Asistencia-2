@@ -5,6 +5,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { InstListComponent } from './views/institucion/inst-list/inst-list.compo
 import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
 import { PersListComponent } from './views/personal/pers-list/pers-list.component';
 import { AsistenciaComponent } from './views/asistencia/asistencia.component';
+import { ReporteComponent } from './views/reporte/reporte.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -61,6 +63,7 @@ registerLocaleData(localeEn, 'en-EN');
     PersFormComponent,
     PersListComponent,
     AsistenciaComponent,
+    ReporteComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +72,7 @@ registerLocaleData(localeEn, 'en-EN');
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatTableExporterModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-bottom-right',

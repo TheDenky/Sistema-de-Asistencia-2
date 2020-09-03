@@ -15,6 +15,7 @@ import { PersListComponent } from './views/personal/pers-list/pers-list.componen
 import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
 import { InstFormComponent } from './views/institucion/inst-form/inst-form.component';
 import { AsistenciaComponent } from './views/asistencia/asistencia.component';
+import { ReporteComponent } from './views/reporte/reporte.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent,
+      },
+      {
+        path: 'reporte',
+        component: ReporteComponent,
       },
     ],
   },

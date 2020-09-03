@@ -49,6 +49,27 @@ class AsistenciaController {
       res.json(asistenciaLista);
     });
   }
+  getreporte(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+      const asistenciaLista = yield database_1.default.query(
+        'SELECT I.nombInst AS Colegio,p.nombPers AS Nombre, GROUP_CONCAT(DATE_FORMAT(fechAsis,"%d")) AS "Dias Asistidos", DATE_FORMAT(fechAsis,"%M") AS Mes FROM asistencia a INNER JOIN institucion I ON I.idInst = a.idInst INNER JOIN personal p ON p.idPers = a.idPers WHERE estaAsis=1 GROUP BY p.nombPers,MONTH(fechAsis)'
+      );
+      res.json(asistenciaLista);
+    });
+  }
+  getunreporte(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+      const { id } = req.params;
+      const unaAsistencia = yield database_1.default.query(
+        'SELECT I.nombInst AS Colegio,p.nombPers AS Nombre, GROUP_CONCAT(DATE_FORMAT(fechAsis,"%d")) AS "Dias Asistidos", DATE_FORMAT(fechAsis,"%M") AS Mes FROM asistencia a INNER JOIN institucion I ON I.idInst = a.idInst INNER JOIN personal p ON p.idPers = a.idPers WHERE estaAsis=1 AND I.idInst=? GROUP BY p.nombPers,MONTH(fechAsis)',
+        [id]
+      );
+      if (unaAsistencia.length > 0) {
+        return res.json(unaAsistencia[0]);
+      }
+      res.status(404).json({ text: 'el reporte no existe' });
+    });
+  }
   getOneAsistencia(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
       const { id } = req.params;

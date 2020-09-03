@@ -16,6 +16,10 @@ class AsistenciaRoutes {
       '/:id',
       asistenciaController_1.asistenciaController.getOneAsistencia
     );
+    this.router.get(
+      '/:id',
+      asistenciaController_1.asistenciaController.getreporte
+    );
     this.router.post(
       '/',
       asistenciaController_1.asistenciaController.crearAsistencia

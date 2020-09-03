@@ -4,6 +4,8 @@ import { Institucion } from 'src/app/models/institucion';
 import { CitiesService } from '../../../services/cities.service';
 import { Region, Distrito, Provincia } from 'src/app/models/cities.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import {FlashMessagesService} from 'angular2-flash-messages';
+
 
 @Component({
   selector: 'app-inst-form',
@@ -35,7 +37,8 @@ export class InstFormComponent implements OnInit {
     private institucionService: InstitucionService,
     private citiesServices: CitiesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public FlashMensaje: FlashMessagesService
   ) {}
 
   ngOnInit(): void {
@@ -85,9 +88,13 @@ export class InstFormComponent implements OnInit {
     this.institucionService.saveInstitucion(this.institucion).subscribe(
       (res) => {
         console.log(res);
+        this.FlashMensaje.show('Institución Guardado correctamente !', {cssClass: 'alert-success', timeout: 5000});
         this.router.navigate(['/institucion/list']);
       },
-      (err) => console.error(err)
+      (err) => {
+        this.FlashMensaje.show('Ha ocurrido algún error al Guardar !', {cssClass: 'alert-danger', timeout: 5000});
+        console.error(err)
+      } 
     );
   }
   updateInstitucion() {
@@ -97,9 +104,13 @@ export class InstFormComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log(res);
+          this.FlashMensaje.show('Institución Modificado correctamente !', {cssClass: 'alert-primary', timeout: 5000});
           this.router.navigate(['/institucion/list']);
         },
-        (err) => console.error(err)
+        (err) => {
+          this.FlashMensaje.show('Ha ocurrido algún error al Modificar !', {cssClass: 'alert-danger', timeout: 5000});
+          console.error(err)
+        } 
       );
   }
 }

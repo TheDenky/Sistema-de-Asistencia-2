@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 import { PersonalService } from '../../../services/personal.service';
 import { Personal } from '../../../models/personal';
@@ -54,7 +55,8 @@ export class RegistrarComponent implements OnInit {
   dataSource = new MatTableDataSource<Personal>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private personalService: PersonalService, private asistenciaService: AsistenciaSService, private router: Router) { 
+  constructor(private personalService: PersonalService, private asistenciaService: AsistenciaSService, private router: Router,
+    public FlashMensaje: FlashMessagesService) { 
     
   }
   unapersona: any = [];
@@ -102,23 +104,10 @@ export class RegistrarComponent implements OnInit {
       console.log(this.asistencia);
       if(this.aux.length == 0){
         this.asistencia.estaAsis = true;
-      }
-      
-      //console.log(this.AsistenciaList[clave].cargPers)
-      //console.log(this.asistencia.fechAsis)
-      //this.asistencia.fechAsis =
-      //var myDate =  moment(data.myTime.format('YYYY/MM/DD HH:mm:ss')).format("YYYY-MM-DD HH:mm:ss");
-      //delete this.AsistenciaList[clave].apelMatePers;
-     // var arreglo = this.asistencia;
-      //this.SaveAsistencia();
+      }  
+
     }
-    //for(let id in this.AsistenciaLimpio){
-    //  this.AsistenciaLimpio.idPers = this.AsistenciaList[id].idPers;
-    //  console.log(this.AsistenciaList[id]);
-    //}
-    //console.log(this.AsistenciaLimpio);
-    //console.log(this.AsistenciaLimpio);
-    
+    this.FlashMensaje.show('Asistencia almacenada correctamente !', {cssClass: 'alert-success', timeout: 6000});
     this.router.navigate(['/asistencia/list']);
   }
   public tardanzas(id){

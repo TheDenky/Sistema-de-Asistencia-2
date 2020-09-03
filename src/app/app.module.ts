@@ -28,6 +28,8 @@ import { MessagesDropdownMenuComponent } from './pages/main/header/messages-drop
 import { NotificationsDropdownMenuComponent } from './pages/main/header/notifications-dropdown-menu/notifications-dropdown-menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppButtonComponent } from './components/app-button/app-button.component';
+import {FlashMessagesModule} from 'angular2-flash-messages';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
@@ -86,6 +88,7 @@ registerLocaleData(localeEn, 'en-EN');
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    FlashMessagesModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 10000,
@@ -99,7 +102,7 @@ registerLocaleData(localeEn, 'en-EN');
     MatTabsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [FlashMessagesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

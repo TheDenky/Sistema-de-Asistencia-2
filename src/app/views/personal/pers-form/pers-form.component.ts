@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PersonalService } from '../../../services/personal.service';
 import { Personal } from 'src/app/models/personal';
 import { ActivatedRoute, Router } from '@angular/router';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-pers-form',
@@ -25,7 +26,8 @@ export class PersFormComponent implements OnInit {
   constructor(
     private personalService: PersonalService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public FlashMensaje: FlashMessagesService
   ) {}
 
   ngOnInit(): void {
@@ -50,10 +52,13 @@ export class PersFormComponent implements OnInit {
     this.personalService.savePersonal(this.personal).subscribe(
       (res) => {
         console.log(res);
+        this.FlashMensaje.show('Personal Guardado correctamente !', {cssClass: 'alert-success', timeout: 5000});
         this.router.navigate(['/personal/list']);
       },
-      (err) => console.error(err)
-    );
+      (err) => {
+        this.FlashMensaje.show('Ha ocurrido algún error al Guardar !', {cssClass: 'alert-danger', timeout: 5000});
+        console.error(err)
+      });
   }
   updatePersonal() {
     //console.log(this.institucion)
@@ -62,9 +67,13 @@ export class PersFormComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log(res);
+          this.FlashMensaje.show('Personal Modificado correctamente !', {cssClass: 'alert-primary', timeout: 5000});
           this.router.navigate(['/personal/list']);
         },
-        (err) => console.error(err)
+        (err) => {
+          this.FlashMensaje.show('Ha ocurrido algún error al Modificar !', {cssClass: 'alert-danger', timeout: 5000});
+          console.error(err)
+        } 
       );
   }
 }

@@ -36,7 +36,7 @@
       >
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview">
+        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tasks"></i>
             <p>
@@ -69,9 +69,9 @@
           </a>
         </li>
         -->
-        <li class="nav-header">ACTORES</li>
+        <li *ngIf="usuario.tipoUsua == 'Ugel'" class="nav-header">ACTORES</li>
         <!--Inicio Personal-->
-        <li class="nav-item has-treeview">
+        <li *ngIf="usuario.tipoUsua == 'Ugel'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
@@ -96,7 +96,7 @@
         </li>
         <!--Fin Personal-->
         <!--Inicio Institucion-->
-        <li class="nav-item has-treeview">
+        <li *ngIf="usuario.tipoUsua == 'Ugel'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-school"></i>
             <p>
@@ -120,9 +120,9 @@
           </ul>
         </li>
         <!--Fin Institucion-->
-        <li class="nav-header">TRAMITES</li>
+        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-header">TRAMITES</li>
         <!--Inicio Trámite-->
-        <li class="nav-item has-treeview">
+        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-file-alt"></i>
             <p>
@@ -158,8 +158,8 @@
           </ul>
         </li>
         <!--Fin Trámite-->
-        <li class="nav-header">ACCESO</li>
-        <li class="nav-item has-treeview">
+        <li  *ngIf="usuario.tipoUsua == 'Director'" class="nav-header">ACCESO</li>
+        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>
@@ -183,20 +183,37 @@
           </ul>
         </li>
         <!--Fin de acceso-->
-        <li class="nav-header">REPORTES</li>
-        <li class="nav-item">
+        <li  *ngIf="usuario.tipoUsua == 'Ugel' || usuario.tipoUsua == 'Director'" class="nav-header">REPORTES</li>
+        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-item">
           <a [routerLink]="['/']" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-chart-bar"></i>
             <p>
-              &nbsp;Dashboard
+              &nbsp;Reporte Mensual
             </p>
           </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="usuario.tipoUsua == 'Ugel'" class="nav-item">
           <a [routerLink]="['/blank']" class="nav-link">
             <i class="nav-icon fas fa-file-excel"></i>
             <p>
               &nbsp;Parte Mensual
+            </p>
+          </a>
+        </li>
+        <li *ngIf="usuario.tipoUsua == 'Docente'" class="nav-item">
+          <a [routerLink]="['/blank']" class="nav-link">
+            <i class="nav-icon fas fa-chart-bar"></i>
+            <p>
+              &nbsp;Informe Docente
+            </p>
+          </a>
+        </li>
+        <li *ngIf="usuario.tipoUsua == 'Admin'" class="nav-header">AUDITORIA</li>
+        <li *ngIf="usuario.tipoUsua == 'Admin'" class="nav-item">
+          <a [routerLink]="['/blank']" class="nav-link">
+            <i class="nav-icon fas fa-file-excel"></i>
+            <p>
+              &nbsp;Logs
             </p>
           </a>
         </li>

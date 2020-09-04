@@ -7,6 +7,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { AppService } from 'src/app/utils/services/app.service';
+import {Usuario} from '../../../models/usuario';
 
 @Component({
   selector: 'app-menu-sidebar',
@@ -14,6 +15,17 @@ import { AppService } from 'src/app/utils/services/app.service';
   styleUrls: ['./menu-sidebar.component.scss'],
 })
 export class MenuSidebarComponent implements OnInit, AfterViewInit {
+
+  usuario: Usuario = {
+      idPers : 0,
+      usuaUsua : "prueba",
+      passUsua : "pruebita",
+      tipoUsua : "Ugel",
+      estaUsua : "Activo",
+  };
+
+  isLogged: Boolean = false;
+
   @ViewChild('mainSidebar', { static: false }) mainSidebar;
   @Output() mainSidebarHeight: EventEmitter<any> = new EventEmitter<any>();
   constructor(public appService: AppService) {}

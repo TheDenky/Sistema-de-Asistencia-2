@@ -20,7 +20,7 @@ export class MenuSidebarComponent implements OnInit, AfterViewInit {
       idPers : 0,
       usuaUsua : "prueba",
       passUsua : "pruebita",
-      tipoUsua : "Ugel",
+      tipoUsua : "Director",
       estaUsua : "Activo",
   };
 

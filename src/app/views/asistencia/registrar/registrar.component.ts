@@ -36,7 +36,7 @@ export class RegistrarComponent implements OnInit {
     'apelMatePers',
     'ACTION',
     'tardanza',
-    'permiso'
+    'permiso',
   ];
   
   asistencia: Asistencia = {

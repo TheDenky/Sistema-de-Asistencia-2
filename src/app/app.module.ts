@@ -4,7 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -29,7 +29,7 @@ import { NotificationsDropdownMenuComponent } from './pages/main/header/notifica
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppButtonComponent } from './components/app-button/app-button.component';
 
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, CommonModule } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import { UserDropdownMenuComponent } from './pages/main/header/user-dropdown-menu/user-dropdown-menu.component';
 import { PersonalComponent } from './views/personal/personal.component';
@@ -39,14 +39,20 @@ import { InstListComponent } from './views/institucion/inst-list/inst-list.compo
 import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
 import { PersListComponent } from './views/personal/pers-list/pers-list.component';
 import { AsistenciaComponent } from './views/asistencia/asistencia.component';
+import { AuthService } from './utils/services/auth.service';
+import { AuthGuard } from './utils/guards/auth.guard';
+import { MainGuard } from './utils/guards/main.guard';
+import { TokenInterceptor } from '../app/utils/token.interceptor';
+import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
-registerLocaleData(localeEn, 'en-EN');
+// registerLocaleData(localeEn, 'en-EN');
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     LoginComponent,
+    MainComponent,
     HeaderComponent,
     FooterComponent,
     MenuSidebarComponent,
@@ -68,8 +74,11 @@ registerLocaleData(localeEn, 'en-EN');
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatButtonModule,
     FormsModule,
     HttpClientModule,
     MatFormFieldModule,
@@ -89,7 +98,16 @@ registerLocaleData(localeEn, 'en-EN');
     MatTabsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard,
+    MainGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -38,22 +38,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       try {
         this.authService.login(this.loginForm.value).subscribe((success) => {
           if (success) {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/']);
           }
         });
       } catch (err) {
         this.loginInvalid = true;
       }
-      // this.authService.login(
-      //   {
-      //     username: this.f.usuario.value,
-      //     password: this.f.password.value
-      //   }
-      // ).subscribe(success =>{
-      //   if (success) {
-      //     this.router.navigate(['/home']);
-      //   }
-      // })
     } else {
       this.toastr.error('Hello world!', 'Toastr fun!');
     }

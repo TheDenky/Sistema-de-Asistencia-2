@@ -7,6 +7,8 @@ import {
   Renderer2,
 } from '@angular/core';
 import { AppService } from 'src/app/utils/services/app.service';
+import { AuthService } from 'src/app/utils/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dropdown-menu',
@@ -27,7 +29,9 @@ export class UserDropdownMenuComponent implements OnInit {
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private appService: AppService
+    private appService: AppService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +55,10 @@ export class UserDropdownMenuComponent implements OnInit {
   }
 
   logout() {
-    this.appService.logout();
+    this.authService.logout().subscribe((success) => {
+      if (success) {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

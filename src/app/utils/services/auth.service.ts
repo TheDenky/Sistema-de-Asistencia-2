@@ -4,26 +4,37 @@ import { Observable, of } from 'rxjs';
 import { config } from '../../config';
 import { catchError, mapTo, tap } from 'rxjs/operators';
 import { Tokens } from '../../models/tokens';
+import Swal from 'sweetalert2';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   private loggedUser: string;
 
- constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   login(user: { username: string; password: string }): Observable<boolean> {
     return this.http.post<any>(`${config.apiUrl}/login`, user).pipe(
       tap((tokens) => this.doLoginUser(user.username, tokens)),
       mapTo(true),
       catchError((error) => {
-        alert(error.error);
+        this.showModal();
         return of(false);
       })
     );
+  }
+
+  showModal() {
+    Swal.fire({
+      position: 'top',
+      icon: 'warning',
+      title: 'Incorrecto usuario o contraseña',
+      showConfirmButton: false,
+      timer: 1500,
+    });
   }
 
   logout() {

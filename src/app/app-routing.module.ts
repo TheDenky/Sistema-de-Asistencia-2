@@ -15,14 +15,22 @@ import { PersListComponent } from './views/personal/pers-list/pers-list.componen
 import { PersFormComponent } from './views/personal/pers-form/pers-form.component';
 import { InstFormComponent } from './views/institucion/inst-form/inst-form.component';
 import { AsistenciaComponent } from './views/asistencia/asistencia.component';
+import { MainGuard } from './utils/guards/main.guard';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: '/login'},
   {
-    path: 'home',
+    path: 'login',
+    pathMatch: 'full',
+    redirectTo: '/login',
+  },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
     component: MainComponent,
-    canActivate: [AuthGuard],
+    canActivate: [MainGuard],
+    canLoad: [MainGuard],
     //canActivateChild: [AuthGuard],
+
     children: [
       {
         path: 'profile',
@@ -61,16 +69,15 @@ const routes: Routes = [
         component: AsistenciaComponent,
       },
       {
-        path: '',
+        path: 'dass',
         component: DashboardComponent,
       },
     ],
   },
-  {
-    path: 'login',
-    component: LoginComponent,
-    //canActivate: [NonAuthGuard],
-  },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent,
+  // },
   {
     path: 'register',
     component: RegisterComponent,

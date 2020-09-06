@@ -6,8 +6,12 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 
 import { PersonalService } from '../../../services/personal.service';
 import { Personal } from '../../../models/personal';
+import {Tardanza} from '../../../models/tardanza';
+import {TardanzaService} from '../../../services/tardanza.service';
 import { Asistencia } from '../../../models/asistencia';
 import { AsistenciaSService } from '../../../services/asistencia-s.service';
+
+import { ToastrService } from 'ngx-toastr';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -31,6 +35,8 @@ export class RegistrarComponent implements OnInit {
     'apelPatePers',
     'apelMatePers',
     'ACTION',
+    'tardanza',
+    'permiso'
   ];
   
   asistencia: Asistencia = {
@@ -52,11 +58,19 @@ export class RegistrarComponent implements OnInit {
     jornLaboPers: 0,
     fotoPers: null,
   };
+  tardanza: Tardanza = {
+    idTard: 0,
+    idPers: 0,
+    horaTard: 0,
+    minuTard: 0,
+    fechaTard: null,
+  };
   dataSource = new MatTableDataSource<Personal>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private personalService: PersonalService, private asistenciaService: AsistenciaSService, private router: Router,
-    public FlashMensaje: FlashMessagesService) { 
+    public FlashMensaje: FlashMessagesService, private tardanzaService: TardanzaService,
+    private toastr: ToastrService) { 
     
   }
   unapersona: any = [];
@@ -143,8 +157,30 @@ export class RegistrarComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+  public obternerTardanza(id: number, dni: string){
+    
+    this.personal.dniPers = dni;
+    this.tardanza.idPers = id;
+    this.tardanza.fechaTard = this.asistencia.fechAsis;
+  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  public registrarTardanza(){
+    delete this.tardanza.idTard;
+    console.log(this.tardanza);
+    this.tardanzaService.saveTardanza(this.tardanza).subscribe(
+      (res) => {
+        console.log(res);
+        //this.FlashMensaje.show('Tardanza Guardado correctamente !', {cssClass: 'alert-success', timeout: 5000});
+        this.toastr.success('Tardanza Guardada', 'Éxitoso');
+        //this.router.navigate(['/personal/list']);
+      },
+      (err) => {
+        //this.FlashMensaje.show('Ha ocurrido algún error al Guardar !', {cssClass: 'alert-danger', timeout: 5000});
+        this.toastr.error('Ha ocurrido algún error', 'Fallido');
+        console.error(err)
+      });
   }
 
 }

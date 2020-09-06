@@ -97,6 +97,24 @@
                   </select>
                 </td>
               </ng-container>
+              <ng-container matColumnDef="tardanza">
+                <th mat-header-cell *matHeaderCellDef>Tardanza</th>
+                <td mat-cell *matCellDef="let element">
+                  <button type="button" class="btn btn-outline-warning" (click)="obternerTardanza(element.idPers, element.dniPers)"
+                    data-toggle="modal" data-target="#tardanzaModal">
+                    <i class="fas fa-clock"></i>
+                  </button>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="permiso">
+                <th mat-header-cell *matHeaderCellDef>Permiso</th>
+                <td mat-cell *matCellDef="let element">
+                  <button type="button" class="btn btn-outline-primary" 
+                    data-toggle="modal" data-target="#permisoModal">
+                    <i class="fas fa-parking"></i>
+                  </button>
+                </td>
+              </ng-container>
   
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
@@ -106,7 +124,7 @@
           <button class="btn btn-primary col-md-4" type="submit" (click)="guardarAsistencia()">
             Grabar
           </button>
-          
+
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -118,3 +136,98 @@
     <!-- /.card -->
   </section>
   <!-- /.content -->
+
+<!-- Modal Tardanza -->
+<div class="modal fade" id="tardanzaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalCenterTitle">Tardanza</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert">
+          <main class="container">
+            <form>
+                <div class="form-group col-md-12">
+                  <label for="inputEmail4">DNI</label>
+                  <input disabled type="number" class="form-control" value="{{personal.dniPers}}" required>                  
+                </div>
+                <div class="form-group col-md-12">
+                  <label >Hora Tardanza</label>
+                  <input type="number" min="0" max="8" [(ngModel)]="tardanza.horaTard" name="tarde" class="form-control" placeholder="Ejm: 2" required>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="inputPassword4">Minuto Tardanza</label>
+                  <input type="number" min="0" max="60" [(ngModel)]="tardanza.minuTard" name="tarde" class="form-control" placeholder="Ejm: 15">
+                </div>
+                
+                <!--
+                <div class="form-group" >
+                      <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control">
+                </div>
+                -->
+            </form>
+         </main>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="registrarTardanza()" data-dismiss="modal">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Permiso -->
+<div class="modal fade" id="permisoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalCenterTitle">Permiso</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert">
+          <main class="container">
+            <form>
+                <div class="form-group col-md-12">
+                  <label for="inputEmail4">DNI</label>
+                  <input disabled type="number" class="form-control" value="{{personal.dniPers}}" required>                  
+                </div>
+                <div class="form-group col-md-12">
+                  <label >Hora Permiso</label>
+                  <input type="number" min="0" max="8" [(ngModel)]="tardanza.horaTard" name="tarde" class="form-control" placeholder="Ejm: 2" required>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="inputPassword4">Minuto Permiso</label>
+                  <input type="number" min="0" max="60" [(ngModel)]="tardanza.minuTard" name="tarde" class="form-control" placeholder="Ejm: 15">
+                </div>
+                <div class="form-group col-md-12">
+                  <label >Motivo</label>
+                  <input type="text" min="0" max="8" [(ngModel)]="tardanza.horaTard" name="tarde" class="form-control" placeholder="Ejm: 2" required>
+                </div>
+                <div class="form-group col-md-12">
+                  <label >Observación</label>
+                  <input type="text" min="0" max="8" [(ngModel)]="tardanza.horaTard" name="tarde" class="form-control" placeholder="Ejm: 2" required>
+                </div>
+                <!--
+                <div class="form-group" >
+                      <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control">
+                </div>
+                -->
+            </form>
+         </main>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="registrarTardanza()" data-dismiss="modal">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

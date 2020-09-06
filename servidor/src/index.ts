@@ -12,6 +12,7 @@ import permisoRoutes from './routes/permisoRoutes';
 import vacacionesRoutes from './routes/vacacionesRoutes';
 import usuarioRoutes from './routes/usuarioRoutes';
 import asistenciaRoutes from './routes/asistenciaRoutes';
+import tardanzaRoutes from './routes/tardanzaRoutes';
 import { asistenciaController } from './Controllers/asistenciaController';
 import { usuarioController } from './Controllers/usuarioController';
 
@@ -47,6 +48,7 @@ class Server {
     this.app.use('/api/vacaciones', vacacionesRoutes);
     this.app.use('/api/asistencia', asistenciaRoutes);
     this.app.use('/api/usuario', usuarioRoutes);
+    this.app.use('/api/tardanza', tardanzaRoutes);
     this.app.use(morgan('dev'));
     this.app.use(cors());
   }

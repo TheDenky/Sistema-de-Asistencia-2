@@ -8,6 +8,10 @@ class UsuarioRoutes {
         this.config();
     }
     config() {
+        this.router.post('/register', usuarioController_1.usuarioController.createAdmin);
+        this.router.post('/login', usuarioController_1.usuarioController.login);
+        this.router.post('/logout', usuarioController_1.usuarioController.salir);
+        this.router.post('/refresh', usuarioController_1.usuarioController.refresh);
         this.router.get('/', usuarioController_1.usuarioController.listarUsuario);
         this.router.get('/:id', usuarioController_1.usuarioController.getOneUsuario);
         this.router.post('/', usuarioController_1.usuarioController.crearUsuario);

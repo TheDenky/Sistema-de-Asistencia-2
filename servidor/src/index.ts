@@ -16,6 +16,13 @@ import tardanzaRoutes from './routes/tardanzaRoutes';
 import { asistenciaController } from './Controllers/asistenciaController';
 import { usuarioController } from './Controllers/usuarioController';
 
+import passport from 'passport';
+import dotenv from 'dotenv';
+const pass = require('./auth/passport');
+const JwtStrategy = require('passport-strategy');
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+
+
 var bodyParser = require('body-parser');
 var app = express();
 //app.use(cors);
@@ -26,18 +33,26 @@ class Server {
 
   constructor() {
     //inicializa express
+    dotenv.config();
     this.app = express();
+    require('./auth/passport');
     this.config();
     this.routes();
   }
   //configurar la propiedad app
   config(): void {
     this.app.set('port', process.env.PORT || 3000);
+    this.app.use(morgan('dev'));
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
+    this.app.use(cors());
   }
   //difinir las rutas detscl servidor
   routes(): void {
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: false }));
+    //this.app.use(bodyParser.json());
+    //this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use('/', indexRoutes);
     this.app.use('/api/prueba', pruebaRoutes);
     this.app.use('/api/personal', personalRoutes);
@@ -49,8 +64,9 @@ class Server {
     this.app.use('/api/asistencia', asistenciaRoutes);
     this.app.use('/api/usuario', usuarioRoutes);
     this.app.use('/api/tardanza', tardanzaRoutes);
-    this.app.use(morgan('dev'));
-    this.app.use(cors());
+    this.app.use('', usuarioRoutes);
+    //this.app.use(morgan('dev'));
+    //this.app.use(cors());
   }
   //iniciar el servidor
   start(): void {

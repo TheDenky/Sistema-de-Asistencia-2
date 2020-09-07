@@ -19,13 +19,21 @@ import { ConsultarComponent } from './views/asistencia/consultar/consultar.compo
 import { RegistrarComponent } from './views/asistencia/registrar/registrar.component';
 import { UsuarioFormComponent } from './views/usuario/usuario-form/usuario-form.component';
 import { UsuarioListComponent } from './views/usuario/usuario-list/usuario-list.component';
+import { MainGuard } from './utils/guards/main.guard';
 
 const routes: Routes = [
   {
+    path: 'login',
+    pathMatch: 'full',
+    redirectTo: '/login',
+  },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  {
     path: '',
     component: MainComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    canActivate: [MainGuard],
+    canLoad: [MainGuard],
+    //canActivateChild: [AuthGuard],
     children: [
       {
         path: 'profile',
@@ -81,15 +89,15 @@ const routes: Routes = [
       },
     ],
   },
-  {
+  /**{
     path: 'login',
     component: LoginComponent,
     canActivate: [NonAuthGuard],
-  },
+  },**/
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [NonAuthGuard],
+    //canActivate: [NonAuthGuard],
   },
   { path: '**', redirectTo: '' },
 ];

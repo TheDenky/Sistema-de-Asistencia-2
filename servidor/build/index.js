@@ -18,6 +18,11 @@ const vacacionesRoutes_1 = __importDefault(require("./routes/vacacionesRoutes"))
 const usuarioRoutes_1 = __importDefault(require("./routes/usuarioRoutes"));
 const asistenciaRoutes_1 = __importDefault(require("./routes/asistenciaRoutes"));
 const tardanzaRoutes_1 = __importDefault(require("./routes/tardanzaRoutes"));
+const passport_1 = __importDefault(require("passport"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const pass = require('./auth/passport');
+const JwtStrategy = require('passport-strategy');
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 var bodyParser = require('body-parser');
 var app = express_1.default();
 //app.use(cors);
@@ -25,18 +30,26 @@ var app = express_1.default();
 class Server {
     constructor() {
         //inicializa express
+        dotenv_1.default.config();
         this.app = express_1.default();
+        require('./auth/passport');
         this.config();
         this.routes();
     }
     //configurar la propiedad app
     config() {
         this.app.set('port', process.env.PORT || 3000);
+        this.app.use(morgan_1.default('dev'));
+        this.app.use(express_1.default.json());
+        this.app.use(express_1.default.urlencoded({ extended: true }));
+        this.app.use(passport_1.default.initialize());
+        this.app.use(passport_1.default.session());
+        this.app.use(cors_1.default());
     }
     //difinir las rutas detscl servidor
     routes() {
-        this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));
+        //this.app.use(bodyParser.json());
+        //this.app.use(bodyParser.urlencoded({ extended: false }));
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/api/prueba', pruebaRoutes_1.default);
         this.app.use('/api/personal', personalRoutes_1.default);
@@ -48,8 +61,9 @@ class Server {
         this.app.use('/api/asistencia', asistenciaRoutes_1.default);
         this.app.use('/api/usuario', usuarioRoutes_1.default);
         this.app.use('/api/tardanza', tardanzaRoutes_1.default);
-        this.app.use(morgan_1.default('dev'));
-        this.app.use(cors_1.default());
+        this.app.use('', usuarioRoutes_1.default);
+        //this.app.use(morgan('dev'));
+        //this.app.use(cors());
     }
     //iniciar el servidor
     start() {

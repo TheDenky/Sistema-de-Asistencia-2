@@ -4,7 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -31,7 +31,7 @@ import { AppButtonComponent } from './components/app-button/app-button.component
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {FlashMessagesService} from 'angular2-flash-messages';
 
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, CommonModule } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import { UserDropdownMenuComponent } from './pages/main/header/user-dropdown-menu/user-dropdown-menu.component';
 import { PersonalComponent } from './views/personal/personal.component';
@@ -46,14 +46,20 @@ import { ConsultarComponent } from './views/asistencia/consultar/consultar.compo
 import { UsuarioComponent } from './views/usuario/usuario.component';
 import { UsuarioFormComponent } from './views/usuario/usuario-form/usuario-form.component';
 import { UsuarioListComponent } from './views/usuario/usuario-list/usuario-list.component';
+import { AuthService } from './utils/services/auth.service';
+import { AuthGuard } from './utils/guards/auth.guard';
+import { MainGuard } from './utils/guards/main.guard';
+import { TokenInterceptor } from './utils/token.interceptor';
+import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 registerLocaleData(localeEn, 'en-EN');
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     LoginComponent,
+    MainComponent,
     HeaderComponent,
     FooterComponent,
     MenuSidebarComponent,
@@ -80,8 +86,11 @@ registerLocaleData(localeEn, 'en-EN');
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatButtonModule,
     FormsModule,
     HttpClientModule,
     MatFormFieldModule,
@@ -102,7 +111,14 @@ registerLocaleData(localeEn, 'en-EN');
     MatTabsModule,
     HttpClientModule,
   ],
-  providers: [FlashMessagesService],
+  providers: [AuthService,
+    AuthGuard,
+    MainGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },FlashMessagesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

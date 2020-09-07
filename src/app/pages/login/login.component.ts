@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { AppService } from '../../utils/services/app.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../utils/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +13,35 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup;
   public isAuthLoading = false;
+  public loginInvalid: boolean;
   constructor(
     private renderer: Renderer2,
     private toastr: ToastrService,
-    private appService: AppService
+    //private appService: AppService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.renderer.addClass(document.querySelector('app-root'), 'login-page');
     this.loginForm = new FormGroup({
-      email: new FormControl(null, Validators.required),
+      username: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
     });
   }
 
   login() {
+    this.loginInvalid = false;
     if (this.loginForm.valid) {
-      this.appService.login();
+      try {
+        this.authService.login(this.loginForm.value).subscribe((success) => {
+          if (success) {
+            this.router.navigate(['/']);
+          }
+        });
+      } catch (err) {
+        this.loginInvalid = true;
+      }
     } else {
       this.toastr.error('Hello world!', 'Toastr fun!');
     }

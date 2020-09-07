@@ -8,7 +8,15 @@ import { version } from './../../../../../package.json';
 })
 export class FooterComponent implements OnInit {
   public appVersion = version;
+  public USER: any;
   constructor() {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    console.log("hola");
+    await this.obtenerDATOSUSUARIO();
+  }
+  obtenerDATOSUSUARIO (){
+    this.USER = JSON.parse( localStorage.getItem("DATOSUSUARIO"));
+    console.log(this.USER);
+  }
 }

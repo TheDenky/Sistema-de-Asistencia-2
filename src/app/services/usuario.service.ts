@@ -8,12 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioService {
 
+  VariableGlobal: any;
+
   constructor(private http: HttpClient) { }
   getUsuario() {
     return this.http.get('/api/usuario');
   }
   usuarioget(id: string) {
     return this.http.get(`/api/usuario/${id}`);
+  }
+  usuarioLoggedGet(user: string) {
+    return this.http.get(`/api/usuario/logged/${user}`);
   }
   deleteUsuario(id: string) {
     return this.http.delete(`/api/usuario/${id}`);

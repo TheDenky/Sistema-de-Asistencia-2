@@ -31,8 +31,10 @@ export class UsuarioListComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuario();
+    console.log(this.usuarioService.VariableGlobal);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.obtenerDATOSUSUARIO();
   }
   public obtenerUsuario() {
     let usua = this.usuarioService.getUsuario();
@@ -46,6 +48,10 @@ export class UsuarioListComponent implements OnInit {
       },
       (err) => console.error(err)
     );
+  }
+  obtenerDATOSUSUARIO(){
+    let datosUsuario = JSON.parse( localStorage.getItem("DATOSUSUARIO"));
+    console.log(datosUsuario.idPers);
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

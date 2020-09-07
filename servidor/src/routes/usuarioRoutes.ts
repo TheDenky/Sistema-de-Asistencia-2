@@ -13,6 +13,7 @@ class UsuarioRoutes {
     this.router.post('/refresh', usuarioController.refresh);
     this.router.get('/', usuarioController.listarUsuario);
     this.router.get('/:id', usuarioController.getOneUsuario);
+    this.router.get('/logged/:id', usuarioController.getUsuarioLogged);
     this.router.post('/', usuarioController.crearUsuario);
     this.router.put('/:id', usuarioController.modificarUsuario);
     this.router.delete('/:id', usuarioController.borrarUsuario);

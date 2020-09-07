@@ -15,24 +15,23 @@ import {Usuario} from '../../../models/usuario';
   styleUrls: ['./menu-sidebar.component.scss'],
 })
 export class MenuSidebarComponent implements OnInit, AfterViewInit {
-
-  usuario: Usuario = {
-      idPers : 0,
-      usuaUsua : "prueba",
-      passUsua : "pruebita",
-      tipoUsua : "Director",
-      estaUsua : "Activo",
-  };
+  public USER: any;
 
   isLogged: Boolean = false;
 
   @ViewChild('mainSidebar', { static: false }) mainSidebar;
   @Output() mainSidebarHeight: EventEmitter<any> = new EventEmitter<any>();
-  constructor(public appService: AppService) {}
+  constructor(public appService: AppService) {
+    this.obtenerDATOSUSUARIO();
+  }
 
   ngOnInit() {}
 
   ngAfterViewInit() {
     this.mainSidebarHeight.emit(this.mainSidebar.nativeElement.offsetHeight);
+  }
+  obtenerDATOSUSUARIO (){
+    this.USER = JSON.parse( localStorage.getItem("DATOSUSUARIO"));
+    console.log(this.USER);
   }
 }

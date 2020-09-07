@@ -59,6 +59,7 @@ export class UserDropdownMenuComponent implements OnInit {
     this.authService.logout().subscribe((success) => {
       if (success) {
         this.router.navigate(['/login']);
+        localStorage.removeItem("DATOSUSUARIO");
       }
     });
   }

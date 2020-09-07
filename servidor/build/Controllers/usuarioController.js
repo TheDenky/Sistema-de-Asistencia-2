@@ -109,6 +109,16 @@ class UsuarioController {
             res.status(404).json({ text: 'El usuario no existe' });
         });
     }
+    getUsuarioLogged(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const unUsuario = yield database_1.default.query('SELECT p.idPers, i.idInst, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?', [id]);
+            if (unUsuario.length > 0) {
+                return res.json(unUsuario[0]);
+            }
+            res.status(404).json({ text: 'El usuario no existe' });
+        });
+    }
     crearUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO usuario set ?', [req.body]);

@@ -22,7 +22,7 @@
         />
       </div>
       <div class="info">
-        <a [routerLink]="['/profile']" class="d-block">The crack</a>
+        <a [routerLink]="['/profile']" class="d-block">{{USER.nombPers}}&nbsp;{{USER.apelPatePers}}&nbsp;{{USER.apelMatePers}}</a>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
       >
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-item has-treeview">
+        <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tasks"></i>
             <p>
@@ -69,9 +69,9 @@
           </a>
         </li>
         -->
-        <li *ngIf="usuario.tipoUsua == 'Ugel'" class="nav-header">ACTORES</li>
+        <li *ngIf="USER.tipoUsua == 'Ugel'" class="nav-header">ACTORES</li>
         <!--Inicio Personal-->
-        <li *ngIf="usuario.tipoUsua == 'Ugel'" class="nav-item has-treeview">
+        <li *ngIf="USER.tipoUsua == 'Ugel'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
@@ -96,7 +96,7 @@
         </li>
         <!--Fin Personal-->
         <!--Inicio Institucion-->
-        <li *ngIf="usuario.tipoUsua == 'Ugel'" class="nav-item has-treeview">
+        <li *ngIf="USER.tipoUsua == 'Ugel'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-school"></i>
             <p>
@@ -120,9 +120,9 @@
           </ul>
         </li>
         <!--Fin Institucion-->
-        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-header">TRAMITES</li>
+        <li *ngIf="USER.tipoUsua == 'Director'" class="nav-header">TRAMITES</li>
         <!--Inicio Trámite-->
-        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-item has-treeview">
+        <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-file-alt"></i>
             <p>
@@ -158,8 +158,8 @@
           </ul>
         </li>
         <!--Fin Trámite-->
-        <li  *ngIf="usuario.tipoUsua == 'Director'" class="nav-header">ACCESO</li>
-        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-item has-treeview">
+        <li  *ngIf="USER.tipoUsua == 'Director'" class="nav-header">ACCESO</li>
+        <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>
@@ -183,8 +183,8 @@
           </ul>
         </li>
         <!--Fin de acceso-->
-        <li  *ngIf="usuario.tipoUsua == 'Ugel' || usuario.tipoUsua == 'Director'" class="nav-header">REPORTES</li>
-        <li *ngIf="usuario.tipoUsua == 'Director'" class="nav-item">
+        <li  *ngIf="USER.tipoUsua == 'Ugel' || USER.tipoUsua == 'Director'" class="nav-header">REPORTES</li>
+        <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item">
           <a [routerLink]="['/']" class="nav-link">
             <i class="nav-icon fas fa-chart-bar"></i>
             <p>
@@ -192,7 +192,7 @@
             </p>
           </a>
         </li>
-        <li *ngIf="usuario.tipoUsua == 'Ugel'" class="nav-item">
+        <li *ngIf="USER.tipoUsua == 'Ugel'" class="nav-item">
           <a [routerLink]="['/blank']" class="nav-link">
             <i class="nav-icon fas fa-file-excel"></i>
             <p>
@@ -200,7 +200,7 @@
             </p>
           </a>
         </li>
-        <li *ngIf="usuario.tipoUsua == 'Docente'" class="nav-item">
+        <li *ngIf="USER.tipoUsua == 'Docente'" class="nav-item">
           <a [routerLink]="['/blank']" class="nav-link">
             <i class="nav-icon fas fa-chart-bar"></i>
             <p>
@@ -208,8 +208,8 @@
             </p>
           </a>
         </li>
-        <li *ngIf="usuario.tipoUsua == 'Admin'" class="nav-header">AUDITORIA</li>
-        <li *ngIf="usuario.tipoUsua == 'Admin'" class="nav-item">
+        <li *ngIf="USER.tipoUsua == 'Admin'" class="nav-header">AUDITORIA</li>
+        <li *ngIf="USER.tipoUsua == 'Admin'" class="nav-item">
           <a [routerLink]="['/blank']" class="nav-link">
             <i class="nav-icon fas fa-file-excel"></i>
             <p>

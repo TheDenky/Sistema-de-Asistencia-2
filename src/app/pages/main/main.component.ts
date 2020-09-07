@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-main',
@@ -12,6 +13,7 @@ export class MainComponent implements OnInit {
   constructor(private renderer: Renderer2) {}
 
   ngOnInit() {
+
     this.renderer.removeClass(document.querySelector('app-root'), 'login-page');
     this.renderer.removeClass(
       document.querySelector('app-root'),

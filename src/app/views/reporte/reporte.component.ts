@@ -11,37 +11,22 @@ import { Reportes } from '../../models/reporte';
 })
 export class ReporteComponent implements OnInit {
   ELEMENT_DATA: Reportes[];
-  displayedColumns: string[] = [
-    'dniPers',
-    'nombPers',
-    'apelPatePers',
-    'apelMatePers',
-    'contLaboPers',
-  ];
+  displayedColumns: string[] = ['nomcolegio', 'nombre', 'Diasasis', 'mes'];
   dataSource = new MatTableDataSource<Reportes>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private reporte: ReporteService) {}
-  unapersona: any = [];
+  reportes: any = [];
 
   ngOnInit(): void {
-    this.obtenerPersonal();
+    this.obtenerreporte();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  public obtenerPersonal() {
-    let resp = this.reporte.getreporte();
+  public obtenerreporte() {
+    let resp = this.reporte.reporte();
     resp.subscribe((report) => (this.dataSource.data = report as Reportes[]));
-  }
-  public obtenerUnPersonal(id: string) {
-    this.reporte.getunreporte(id).subscribe(
-      (res) => {
-        console.log(res);
-        this.unapersona = res;
-      },
-      (err) => console.error(err)
-    );
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

@@ -9,10 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ReporteService {
   constructor(private http: HttpClient) {}
-  getunreporte(id: string) {
-    return this.http.get(`/api/asistencia/${id}`);
-  }
-  getreporte() {
+  reporte() {
     return this.http.get('/api/asistencia');
   }
 }

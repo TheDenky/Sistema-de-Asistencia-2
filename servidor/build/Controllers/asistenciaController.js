@@ -51,10 +51,10 @@ class AsistenciaController {
   }
   getreporte(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-      const asistenciaLista = yield database_1.default.query(
+      const reporte = yield database_1.default.query(
         'SELECT I.nombInst AS Colegio,p.nombPers AS Nombre, GROUP_CONCAT(DATE_FORMAT(fechAsis,"%d")) AS "Dias Asistidos", DATE_FORMAT(fechAsis,"%M") AS Mes FROM asistencia a INNER JOIN institucion I ON I.idInst = a.idInst INNER JOIN personal p ON p.idPers = a.idPers WHERE estaAsis=1 GROUP BY p.nombPers,MONTH(fechAsis)'
       );
-      res.json(asistenciaLista);
+      res.json(reporte);
     });
   }
   getunreporte(req, res) {

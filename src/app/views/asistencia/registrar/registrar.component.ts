@@ -12,6 +12,7 @@ import { Asistencia } from '../../../models/asistencia';
 import { AsistenciaSService } from '../../../services/asistencia-s.service';
 
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -28,6 +29,7 @@ export class RegistrarComponent implements OnInit {
   ELEMENT_DATA: Personal[];
   AsistenciaList: any = [];
   aux: any = [];
+  public USER: any;
   AsistenciaLimpio: any = [];
   displayedColumns: string[] = [
     'dniPers',
@@ -42,7 +44,7 @@ export class RegistrarComponent implements OnInit {
   asistencia: Asistencia = {
     idAsis: 0,
     idPers: 0,
-    idInst: 3,
+    idInst: 0,
     estaAsis: true,
     estado: "",
     fechAsis: null,
@@ -76,10 +78,12 @@ export class RegistrarComponent implements OnInit {
   unapersona: any = [];
 
   ngOnInit(): void {
+    this.obtenerDATOSUSUARIO();
     this.obtenerPersonal();
     this.obtenerDatosPersonal();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    
   }
   public obtenerPersonal() {
     let resp = this.personalService.getPersonal();
@@ -121,7 +125,8 @@ export class RegistrarComponent implements OnInit {
       }  
 
     }
-    this.FlashMensaje.show('Asistencia almacenada correctamente !', {cssClass: 'alert-success', timeout: 6000});
+    this.showModal();
+    //this.FlashMensaje.show('Asistencia almacenada correctamente !', {cssClass: 'alert-success', timeout: 6000});
     this.router.navigate(['/asistencia/list']);
   }
   public tardanzas(id){
@@ -163,6 +168,11 @@ export class RegistrarComponent implements OnInit {
     this.tardanza.idPers = id;
     this.tardanza.fechaTard = this.asistencia.fechAsis;
   }
+  obtenerDATOSUSUARIO (){
+    this.USER = JSON.parse( localStorage.getItem("DATOSUSUARIO"));
+    this.asistencia.idInst = this.USER.idInst;
+    console.log(this.USER);
+  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -181,6 +191,15 @@ export class RegistrarComponent implements OnInit {
         this.toastr.error('Ha ocurrido algún error', 'Fallido');
         console.error(err)
       });
+  }
+  showModal() {
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Asistencia Guardada Exitosamente !',
+      showConfirmButton: false,
+      timer: 4000,
+    });
   }
 
 }

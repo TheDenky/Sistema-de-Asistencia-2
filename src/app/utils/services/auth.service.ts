@@ -33,7 +33,7 @@ export class AuthService {
       icon: 'warning',
       title: 'Incorrecto usuario o contraseña',
       showConfirmButton: false,
-      timer: 1500,
+      timer: 2000,
     });
   }
 

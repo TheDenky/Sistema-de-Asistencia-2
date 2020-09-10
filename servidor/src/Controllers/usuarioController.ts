@@ -12,10 +12,22 @@ class UsuarioController {
     res.json(UsuarioLista);
   }
 
+  public async getUsuarioLogged(req: Request, res: Response): Promise<any> {
+    const { id } = req.params;
+    const unUsuario = await pool.query(
+      'SELECT p.idPers, i.idInst, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?',
+      [id]
+    );
+    if (unUsuario.length > 0) {
+      return res.json(unUsuario[0]);
+    }
+    res.status(404).json({ text: 'El usuario no existe' });
+  }
+
   public async login(req: Request, res: Response, done: any): Promise<any> {
     const { username, password } = req.body;
     const usuario = await pool.query(
-      'SELECT * FROM usuario WHERE usuaUsua = ?',
+      'SELECT p.idPers, i.idInst, u.usuaUsua, u.passUsua, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?',
       [username]
     );
     console.log(usuario.length);
@@ -50,7 +62,7 @@ class UsuarioController {
     //res.json(encriptada);
     const result = await pool.query(
       'INSERT INTO usuario(idPers, idInst, usuaUsua, passUsua, tipoUsua, estaUsua) values(?,?,?,?,?,?)',
-      ['10', '3', user.usuaUsua, encriptada, 'Director', 'Activo' ]
+      ['9', '3', user.usuaUsua, encriptada, 'Docente', 'Activo' ]
     );
     res.json({message : 'Usuario guardado'});
   }
@@ -98,18 +110,6 @@ class UsuarioController {
     const { id } = req.params;
     const unUsuario = await pool.query(
       'SELECT * FROM usuario WHERE idPers = ?',
-      [id]
-    );
-    if (unUsuario.length > 0) {
-      return res.json(unUsuario[0]);
-    }
-    res.status(404).json({ text: 'El usuario no existe' });
-  }
-
-  public async getUsuarioLogged(req: Request, res: Response): Promise<any> {
-    const { id } = req.params;
-    const unUsuario = await pool.query(
-      'SELECT p.idPers, i.idInst, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?',
       [id]
     );
     if (unUsuario.length > 0) {

@@ -10,6 +10,8 @@ import {Tardanza} from '../../../models/tardanza';
 import {TardanzaService} from '../../../services/tardanza.service';
 import { Asistencia } from '../../../models/asistencia';
 import { AsistenciaSService } from '../../../services/asistencia-s.service';
+import {Permiso} from '../../../models/permiso';
+import {PermisoService} from '../../../services/tramites/permiso.service';
 
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
@@ -67,11 +69,21 @@ export class RegistrarComponent implements OnInit {
     minuTard: 0,
     fechaTard: null,
   };
+  permiso: Permiso = {
+    idPerm: 0,
+    idPers: 0,
+    horaPerm: 0,
+    minutoPerm: 0,
+    fechaPerm: null,
+    obsePerm: '',
+    motiPerm: '',
+    docuPerm: '',
+  };
   dataSource = new MatTableDataSource<Personal>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private personalService: PersonalService, private asistenciaService: AsistenciaSService, private router: Router,
-    public FlashMensaje: FlashMessagesService, private tardanzaService: TardanzaService,
+    public FlashMensaje: FlashMessagesService, private tardanzaService: TardanzaService, private permisoService: PermisoService,
     private toastr: ToastrService) { 
     
   }
@@ -167,6 +179,18 @@ export class RegistrarComponent implements OnInit {
     this.personal.dniPers = dni;
     this.tardanza.idPers = id;
     this.tardanza.fechaTard = this.asistencia.fechAsis;
+    this.tardanza.horaTard = 0;
+    this.tardanza.minuTard = 0;
+  }
+  public obternerPermiso(id: number, dni: string){
+    
+    this.personal.dniPers = dni;
+    this.permiso.idPers = id;
+    this.permiso.fechaPerm = this.asistencia.fechAsis;
+    this.permiso.horaPerm = 0;
+    this.permiso.minutoPerm = 0;
+    this.permiso.motiPerm = '';
+    this.permiso.obsePerm = '';
   }
   obtenerDATOSUSUARIO (){
     this.USER = JSON.parse( localStorage.getItem("DATOSUSUARIO"));
@@ -188,6 +212,19 @@ export class RegistrarComponent implements OnInit {
       },
       (err) => {
         //this.FlashMensaje.show('Ha ocurrido algún error al Guardar !', {cssClass: 'alert-danger', timeout: 5000});
+        this.toastr.error('Ha ocurrido algún error', 'Fallido');
+        console.error(err)
+      });
+  }
+  public registrarPermiso(){
+    delete this.permiso.idPerm;
+    console.log(this.permiso);
+    this.permisoService.savePermiso(this.permiso).subscribe(
+      (res) => {
+        console.log(res);
+        this.toastr.success('Permiso Guardado', 'Éxitoso');
+      },
+      (err) => {
         this.toastr.error('Ha ocurrido algún error', 'Fallido');
         console.error(err)
       });

@@ -52,6 +52,10 @@ import { MainGuard } from './utils/guards/main.guard';
 import { TokenInterceptor } from './utils/token.interceptor';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { TardanzaComponent } from './views/tardanza/tardanza.component';
+import { PermisoComponent } from './views/permiso/permiso.component';
+import { TardanzaListComponent } from './views/tardanza/tardanza-list/tardanza-list.component';
+import { PermisoListComponent } from './views/permiso/permiso-list/permiso-list.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -83,6 +87,10 @@ registerLocaleData(localeEn, 'en-EN');
     UsuarioComponent,
     UsuarioFormComponent,
     UsuarioListComponent,
+    TardanzaComponent,
+    PermisoComponent,
+    TardanzaListComponent,
+    PermisoListComponent,
   ],
   imports: [
     BrowserModule,

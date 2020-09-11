@@ -1,6 +1,6 @@
 export interface Permiso {
   idPerm?: number;
-  dnipers?: number;
+  idPers?: number;
   horaPerm?: number;
   minutoPerm?: number;
   fechaPerm?: Date;

@@ -109,7 +109,7 @@
               <ng-container matColumnDef="permiso">
                 <th mat-header-cell *matHeaderCellDef>Permiso</th>
                 <td mat-cell *matCellDef="let element">
-                  <button type="button" class="btn btn-outline-primary" 
+                  <button type="button" class="btn btn-outline-primary" (click)="obternerPermiso(element.idPers, element.dniPers)"
                     data-toggle="modal" data-target="#permisoModal">
                     <i class="fas fa-parking"></i>
                   </button>
@@ -157,11 +157,11 @@
                 </div>
                 <div class="form-group col-md-12">
                   <label >Hora Tardanza</label>
-                  <input type="number" min="0" max="8" [(ngModel)]="tardanza.horaTard" name="tarde" class="form-control" placeholder="Ejm: 2" required>
+                  <input type="number" min="0" max="7" [(ngModel)]="tardanza.horaTard" name="tarde" class="form-control" placeholder="Ejm: 2" required>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputPassword4">Minuto Tardanza</label>
-                  <input type="number" min="0" max="60" [(ngModel)]="tardanza.minuTard" name="tarde" class="form-control" placeholder="Ejm: 15">
+                  <input type="number" min="0" max="59" [(ngModel)]="tardanza.minuTard" name="tarde" class="form-control" placeholder="Ejm: 15">
                 </div>
                 
                 <!--
@@ -201,19 +201,19 @@
                 </div>
                 <div class="form-group col-md-12">
                   <label >Hora Permiso</label>
-                  <input type="number" min="0" max="8" [(ngModel)]="tardanza.horaTard" name="tarde" class="form-control" placeholder="Ejm: 2" required>
+                  <input type="number" min="0" max="7" [(ngModel)]="permiso.horaPerm" name="tarde" class="form-control" placeholder="Ejm: 2" required>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputPassword4">Minuto Permiso</label>
-                  <input type="number" min="0" max="60" [(ngModel)]="tardanza.minuTard" name="tarde" class="form-control" placeholder="Ejm: 15">
+                  <input type="number" min="0" max="59" [(ngModel)]="permiso.minutoPerm" name="tarde" class="form-control" placeholder="Ejm: 15">
                 </div>
                 <div class="form-group col-md-12">
                   <label >Motivo</label>
-                  <input type="text" min="0" max="8" [(ngModel)]="tardanza.horaTard" name="tarde" class="form-control" placeholder="Ejm: 2" required>
+                  <input type="text" [(ngModel)]="permiso.motiPerm" name="tarde" class="form-control" placeholder="Ejm: Salud" required>
                 </div>
                 <div class="form-group col-md-12">
                   <label >Observación</label>
-                  <input type="text" min="0" max="8" [(ngModel)]="tardanza.horaTard" name="tarde" class="form-control" placeholder="Ejm: 2" required>
+                  <input type="text" [(ngModel)]="permiso.obsePerm" name="tarde" class="form-control" placeholder="Ejm: Cita en el hospital" required>
                 </div>
                 <!--
                 <div class="form-group" >
@@ -226,7 +226,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="registrarTardanza()" data-dismiss="modal">Guardar</button>
+        <button type="button" class="btn btn-primary" (click)="registrarPermiso()" data-dismiss="modal">Guardar</button>
       </div>
     </div>
   </div>

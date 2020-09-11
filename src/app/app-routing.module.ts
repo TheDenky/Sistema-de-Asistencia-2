@@ -20,6 +20,9 @@ import { RegistrarComponent } from './views/asistencia/registrar/registrar.compo
 import { UsuarioFormComponent } from './views/usuario/usuario-form/usuario-form.component';
 import { UsuarioListComponent } from './views/usuario/usuario-list/usuario-list.component';
 import { MainGuard } from './utils/guards/main.guard';
+import { TardanzaComponent } from './views/tardanza/tardanza.component';
+import { TardanzaListComponent } from './views/tardanza/tardanza-list/tardanza-list.component';
+import { PermisoListComponent } from './views/permiso/permiso-list/permiso-list.component';
 
 const routes: Routes = [
   {
@@ -82,6 +85,14 @@ const routes: Routes = [
       {
         path: 'usuario/list',
         component: UsuarioListComponent,
+      },
+      {
+        path: 'tardanza/list',
+        component: TardanzaListComponent,
+      },
+      {
+        path: 'permiso/list',
+        component: PermisoListComponent,
       },
       {
         path: '',

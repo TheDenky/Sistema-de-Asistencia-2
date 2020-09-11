@@ -19,6 +19,7 @@ import { ConsultarComponent } from './views/asistencia/consultar/consultar.compo
 import { RegistrarComponent } from './views/asistencia/registrar/registrar.component';
 import { UsuarioFormComponent } from './views/usuario/usuario-form/usuario-form.component';
 import { UsuarioListComponent } from './views/usuario/usuario-list/usuario-list.component';
+import { ReportesComponent } from './views/reportes/reportes.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
       {
         path: 'usuario/list',
         component: UsuarioListComponent,
+      },
+      {
+        path: 'reportes',
+        component: ReportesComponent,
       },
       {
         path: '',

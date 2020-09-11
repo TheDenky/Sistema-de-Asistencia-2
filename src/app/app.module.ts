@@ -46,6 +46,7 @@ import { ConsultarComponent } from './views/asistencia/consultar/consultar.compo
 import { UsuarioComponent } from './views/usuario/usuario.component';
 import { UsuarioFormComponent } from './views/usuario/usuario-form/usuario-form.component';
 import { UsuarioListComponent } from './views/usuario/usuario-list/usuario-list.component';
+import { ReportesComponent } from './views/reportes/reportes.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -77,6 +78,7 @@ registerLocaleData(localeEn, 'en-EN');
     UsuarioComponent,
     UsuarioFormComponent,
     UsuarioListComponent,
+    ReportesComponent,
   ],
   imports: [
     BrowserModule,

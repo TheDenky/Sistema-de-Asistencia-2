@@ -3,6 +3,6 @@ export default {
     host: 'localhost',
     user: 'root',
     password: 'denkydenkydenky',
-    database: 'asistencia',
+    database: 'bdasistencia',
   },
 };

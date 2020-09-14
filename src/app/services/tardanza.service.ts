@@ -12,6 +12,9 @@ export class TardanzaService {
   getAllTardanza() {
     return this.http.get('/api/tardanza');
   }
+  getAllTardanzaUser(id: string) {
+    return this.http.get(`/api/tardanza/my/${id}`);
+  }
   getOneTardanza(id: string) {
     return this.http.get(`/api/institucion/${id}`);
   }

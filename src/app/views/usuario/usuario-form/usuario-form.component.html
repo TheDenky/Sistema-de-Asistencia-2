@@ -46,7 +46,237 @@
           </div>
         </div>
         <div class="card-body">
-          
+          <div class="container">
+            <div class="row">
+                <div class="col">
+                  <input
+                    class="form-control"
+                    matInput
+                    (keyup)="applyFilter($event.target.value)"
+                    placeholder="Buscar Personal"
+                  />
+                </div>
+            </div>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+                  <ng-container matColumnDef="dniPers">
+                    <th mat-header-cell *matHeaderCellDef>DNI</th>
+                    <td mat-cell *matCellDef="let element">{{ element.dniPers }}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="nombPers">
+                    <th mat-header-cell *matHeaderCellDef>Nombres</th>
+                    <td mat-cell *matCellDef="let element">{{ element.nombPers }}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="apelPatePers">
+                    <th mat-header-cell *matHeaderCellDef>Ap.Paterno</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.apelPatePers }}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="apelMatePers">
+                    <th mat-header-cell *matHeaderCellDef>Ap.Materno</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.apelMatePers }}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="cargPers">
+                    <th mat-header-cell *matHeaderCellDef>Cargo</th>
+                    <td mat-cell *matCellDef="let element">{{ element.cargPers }}</td>
+                  </ng-container>
+                        
+                  <ng-container matColumnDef="ACTION">
+                    <th mat-header-cell *matHeaderCellDef>Select</th>
+                    <td mat-cell *matCellDef="let element">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="PersonalSeleccionado(element.idPers, element.dniPers)"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                      >
+                      Seleccionar
+                        <i class="fas fa-check"></i>
+                      </button>
+                    </td>
+                  </ng-container>
+      
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+                <mat-paginator
+                  [pageSizeOptions]="[1]"
+                  showFirstLastButtons
+                ></mat-paginator>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col">
+                <input
+                  class="form-control"
+                  matInput
+                  (keyup)="applyFilter2($event.target.value)"
+                  placeholder="Buscar Institución"
+                />
+              </div>
+            </div>
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource2">
+                <!-- Codigo Modular Column -->
+                <ng-container matColumnDef="codiModuInst">
+                  <th mat-header-cell *matHeaderCellDef>Código</th>
+                  <td mat-cell *matCellDef="let element2">
+                    {{ element2.codiModuInst }}
+                  </td>
+                </ng-container>
+    
+                <!-- Nombre Column -->
+                <ng-container matColumnDef="nombInst">
+                  <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                  <td mat-cell *matCellDef="let element2">{{ element2.nombInst }}</td>
+                </ng-container>
+    
+                <!-- Numero Column -->
+                <ng-container matColumnDef="niveEduInst">
+                  <th mat-header-cell *matHeaderCellDef>Nivel</th>
+                  <td mat-cell *matCellDef="let element2">
+                    {{ element2.niveEduInst }}
+                  </td>
+                </ng-container>
+    
+                <!-- Nivel Column -->
+                <ng-container matColumnDef="modaInst">
+                  <th mat-header-cell *matHeaderCellDef>Modalidad</th>
+                  <td mat-cell *matCellDef="let element2">{{ element2.modaInst }}</td>
+                </ng-container>
+    
+                <!-- Modalidad Column -->
+                <ng-container matColumnDef="turnInst">
+                  <th mat-header-cell *matHeaderCellDef>Turno</th>
+                  <td mat-cell *matCellDef="let element2">{{ element2.turnInst }}</td>
+                </ng-container>
+    
+                <!-- action Column -->
+                <ng-container matColumnDef="ACTION">
+                  <th mat-header-cell *matHeaderCellDef>Select</th>
+                  <td mat-cell *matCellDef="let element2">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      (click)="InstitucionSeleccionado(element2.idInst, element2.codiModuInst)"
+                      data-toggle="modal"
+                      data-target="#ventanaModal"
+                    >
+                      Seleccionar
+                      <i class="fas fa-check"></i>
+                    </button>
+                  </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns2"></tr>
+              </table>
+    
+              
+            </div>
+            <hr>
+            <form>
+              <div class="form-row">
+                <div class="col-md-3 mb-3">
+                  <label for="validationDefault01"
+                    >DNI personal *</label>
+                  <input
+                    type="text"
+                    disabled
+                    name="nombInst"
+                    class="form-control"
+                    maxlength="100"
+                    [(ngModel)] = "datos.dniP"
+                    id="dniPesonalLab"
+                    placeholder=""
+                    required
+                  />
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="validationDefault01"
+                    >Cod. Modular institución *</label>
+                  <input
+                    type="text"
+                    disabled
+                    name="codModuIn"
+                    class="form-control"
+                    maxlength="100"
+                    [(ngModel)] = "datos.codI"
+                    id="dniInstitucionLab"
+                    placeholder=""
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="validationDefault05">Usuario *</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="usuario.usuaUsua"
+                    name="usuaUsua"
+                    placeholder=""
+                    class="form-control"
+                    required
+                  />
+                </div>
+  
+                <div class="col-md-6 mb-3">
+                  <label for="validationDefault05">Contraseña *</label>
+                  <input
+                    type="password"
+                    [(ngModel)]="usuario.passUsua"
+                    name="passUsua"
+                    placeholder=""
+                    class="form-control"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="validationDefault04">Tipo</label>
+                  <select
+                    class="custom-select"
+                    [(ngModel)]="usuario.tipoUsua"
+                    name="cargPers"
+                    required
+                  >
+                    <option selected disabled value="">Selecciona...</option>
+                    <option>Docente</option>
+                    <option>Director</option>
+                    <option>Administrativo</option>
+                    <option>Conserje</option>
+                    <option>Ugel</option>
+                    <option>Admin</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="validationDefault04">Estado</label>
+                  <select
+                    class="custom-select"
+                    [(ngModel)]="usuario.estaUsua"
+                    name="estaUsuar"
+                    required
+                  >
+                    <option selected disabled value="">Selecciona...</option>
+                    <option>Activo</option>
+                    <option>Inactivo</option>
+                  </select>
+                </div>
+                
+              </div>
+              
+              <hr />
+              <button class="btn btn-primary col-md-3" type="submit" (click)="guardarUsuario()" >
+                Grabar
+              </button>
+            </form>
+          </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

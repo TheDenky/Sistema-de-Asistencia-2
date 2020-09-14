@@ -24,7 +24,7 @@ export class UsuarioService {
     return this.http.delete(`/api/usuario/${id}`);
   }
   saveUsuario(usuario: Usuario) {
-    return this.http.post('/api/usuario', usuario);
+    return this.http.post('/api/usuario/register', usuario);
   }
   updateUsuario(
     id: string | number,

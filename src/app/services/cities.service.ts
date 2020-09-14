@@ -37,7 +37,7 @@ export class CitiesService {
     {
       id: 'P0002',
       regionId: 'R0001',
-      name: 'Abancay',
+      name: 'Chincheros',
     },
     {
       id: 'P0003',

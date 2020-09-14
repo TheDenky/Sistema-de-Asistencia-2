@@ -28,7 +28,7 @@ class UsuarioController {
     getUsuarioLogged(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const unUsuario = yield database_1.default.query('SELECT p.idPers, i.idInst, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?', [id]);
+            const unUsuario = yield database_1.default.query('SELECT p.idPers, i.idInst, i.codiModuInst, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?', [id]);
             if (unUsuario.length > 0) {
                 return res.json(unUsuario[0]);
             }
@@ -38,7 +38,7 @@ class UsuarioController {
     login(req, res, done) {
         return __awaiter(this, void 0, void 0, function* () {
             const { username, password } = req.body;
-            const usuario = yield database_1.default.query('SELECT p.idPers, i.idInst, u.usuaUsua, u.passUsua, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?', [username]);
+            const usuario = yield database_1.default.query('SELECT p.idPers, i.idInst, i.codiModuInst, u.usuaUsua, u.passUsua, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?', [username]);
             console.log(usuario.length);
             const user = usuario[0];
             console.log(user);
@@ -78,12 +78,12 @@ class UsuarioController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { username, password, estado, tipo } = req.body;
-            const encriptada = yield helpers_1.default.encryptPassword(password);
-            const { id } = req.headers;
-            console.log(id);
-            const result = yield database_1.default.query('INSERT INTO usuario(idPers, usuaUsua, passUsua, tipoUsua, estaUsua) values(?,?,?,?,?)', [username, encriptada, tipo, estado]);
-            //res.json({message : 'Usuario guardado'});
+            const { idPers, idInst, usuaUsua, passUsua, tipoUsua, estaUsua } = req.body;
+            const encriptada = yield helpers_1.default.encryptPassword(passUsua);
+            //const {id} = req.headers;
+            //console.log(id); 
+            const result = yield database_1.default.query('INSERT INTO usuario(idPers, idInst, usuaUsua, passUsua, tipoUsua, estaUsua) values(?,?,?,?,?,?)', [idPers, idInst, usuaUsua, encriptada, tipoUsua, estaUsua]);
+            res.json({ message: 'Usuario guardado' });
         });
     }
     salir(req, res) {

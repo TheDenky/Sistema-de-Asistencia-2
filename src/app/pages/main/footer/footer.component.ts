@@ -11,9 +11,8 @@ export class FooterComponent implements OnInit {
   public USER: any;
   constructor() {}
 
-  async ngOnInit() {
-    console.log("hola");
-    await this.obtenerDATOSUSUARIO();
+  ngOnInit() {
+    this.obtenerDATOSUSUARIO();
   }
   obtenerDATOSUSUARIO (){
     this.USER = JSON.parse( localStorage.getItem("DATOSUSUARIO"));

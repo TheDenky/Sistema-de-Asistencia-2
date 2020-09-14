@@ -1,3 +1,34 @@
 table {
     width: 100%;
+  }
+mat-form-field {
+  margin-right: 12px;
+}
+//esto es para la cabecera de la tabla
+.mat-header-row:nth-child(odd){
+  background-color:#21d5e2;
+}
+//esto es para pintar cuando esta encima
+  //.mat-row:hover {
+  //  background-color:#40C4FF;
+  //}
+//esto son para los campos de entrada
+input{
+  background:#f7f6dd;
+}
+//esto es para la cabecera general
+  //section{
+  //  background:#42A5F5;
+  //}
+//esto es para uno si uno no impar
+.mat-row:nth-child(odd){
+  background-color:#E3F2FD;
+}
+
+option{
+  background:#90CAF9;
+}
+  //Esto es para uno si uno no par
+.mat-row:nth-child(even){
+  background-color: #BBDEFB;
 }

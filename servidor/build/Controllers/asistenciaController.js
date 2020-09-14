@@ -21,6 +21,19 @@ class AsistenciaController {
             res.json(asistenciaLista);
         });
     }
+    listarAsistenciaUnoSolo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const asistenciaLista = yield database_1.default.query('SELECT * FROM asistencia where idPers = ?', [id]);
+            res.json(asistenciaLista);
+        });
+    }
+    logs(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const asistenciaLogs = yield database_1.default.query('select nombInst, nombPers, apelPatePers, apelMatePers,fechaLog, estadoAsisNuev, estadoAsisViej, acciLog from (log l inner join personal p on l.idPers = p.idPers) inner join institucion i on i.idInst = l.idIns');
+            res.json(asistenciaLogs);
+        });
+    }
     getOneAsistencia(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
@@ -39,6 +52,16 @@ class AsistenciaController {
         });
     }
     modificarAsistencia(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('UPDATE asistencia set ? WHERE idAsis = ?', [
+                req.body,
+                id,
+            ]);
+            res.json({ message: 'La Asistencia fue Actualizada' });
+        });
+    }
+    modificarAsistenciaNuevo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             yield database_1.default.query('UPDATE asistencia set ? WHERE idAsis = ?', [

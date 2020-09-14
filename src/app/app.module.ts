@@ -56,6 +56,18 @@ import { TardanzaComponent } from './views/tardanza/tardanza.component';
 import { PermisoComponent } from './views/permiso/permiso.component';
 import { TardanzaListComponent } from './views/tardanza/tardanza-list/tardanza-list.component';
 import { PermisoListComponent } from './views/permiso/permiso-list/permiso-list.component';
+import { VacacionesComponent } from './views/vacaciones/vacaciones.component';
+import { VacacionesFormComponent } from './views/vacaciones/vacaciones-form/vacaciones-form.component';
+import { VacacionesListComponent } from './views/vacaciones/vacaciones-list/vacaciones-list.component';
+import { LicenciaComponent } from './views/licencia/licencia.component';
+import { LicenciaFormComponent } from './views/licencia/licencia-form/licencia-form.component';
+import { LicenciaListComponent } from './views/licencia/licencia-list/licencia-list.component';
+import { ReporteAsistenciaComponent } from './views/reporte-asistencia/reporte-asistencia.component';
+import { ReporteConsolidadoComponent } from './views/reporte-consolidado/reporte-consolidado.component';
+import { MisAsistenciasComponent } from './views/mis-asistencias/mis-asistencias.component';
+import { MisTardanzasComponent } from './views/mis-tardanzas/mis-tardanzas.component';
+import { MisPermisosComponent } from './views/mis-permisos/mis-permisos.component';
+import { LogsComponent } from './views/logs/logs.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -91,6 +103,18 @@ registerLocaleData(localeEn, 'en-EN');
     PermisoComponent,
     TardanzaListComponent,
     PermisoListComponent,
+    VacacionesComponent,
+    VacacionesFormComponent,
+    VacacionesListComponent,
+    LicenciaComponent,
+    LicenciaFormComponent,
+    LicenciaListComponent,
+    ReporteAsistenciaComponent,
+    ReporteConsolidadoComponent,
+    MisAsistenciasComponent,
+    MisTardanzasComponent,
+    MisPermisosComponent,
+    LogsComponent,
   ],
   imports: [
     BrowserModule,

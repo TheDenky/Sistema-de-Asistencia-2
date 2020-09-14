@@ -1,10 +1,10 @@
 export interface Licencia {
   idlice?: number;
-  dnipers?: number;
-  tipolice?: string;
+  idPers?: number;
+  tipoLice?: string;
   motiLice?: string;
   fechIniLice?: Date;
   fechFinLice?: Date;
   obseLice?: string;
-  docuLice?: string;
+  docuLice?: any;
 }

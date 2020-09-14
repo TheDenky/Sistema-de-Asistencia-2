@@ -1,8 +1,8 @@
 export interface Vacaciones {
   idVaca?: number;
-  dnipers?: number;
-  fechiniVaca?: Date;
-  fechfinVaca?: Date;
-  motivaca?: string;
+  idPers?: number;
+  fechinicVaca?: Date;
+  fechFinVaca?: Date;
   descVaca?: number;
+  motiVaca?: string;
 }

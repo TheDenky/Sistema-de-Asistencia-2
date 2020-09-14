@@ -21,6 +21,13 @@ class PermisoController {
             res.json(permisoLista);
         });
     }
+    listarPermisoUnoSolo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const permisoLista = yield database_1.default.query('SELECT * FROM permiso where idPers = ?', [id]);
+            res.json(permisoLista);
+        });
+    }
     getOnePermiso(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

@@ -6,6 +6,11 @@ class PermisoController {
     const permisoLista = await pool.query('SELECT * FROM permiso');
     res.json(permisoLista);
   }
+  public async listarPermisoUnoSolo(req: Request, res: Response) {
+    const { id } = req.params;
+    const permisoLista = await pool.query('SELECT * FROM permiso where idPers = ?', [id]);
+    res.json(permisoLista);
+  }
   public async getOnePermiso(req: Request, res: Response): Promise<any> {
     const { id } = req.params;
     const unPermiso = await pool.query(

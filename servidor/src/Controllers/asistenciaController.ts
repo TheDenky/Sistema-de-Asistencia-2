@@ -6,6 +6,15 @@ class AsistenciaController {
     const asistenciaLista = await pool.query('SELECT * FROM asistencia');
     res.json(asistenciaLista);
   }
+  public async listarAsistenciaUnoSolo(req: Request, res: Response) {
+    const { id } = req.params;
+    const asistenciaLista = await pool.query('SELECT * FROM asistencia where idPers = ?', [id]);
+    res.json(asistenciaLista);
+  }
+  public async logs(req: Request, res: Response) {
+    const asistenciaLogs = await pool.query('select nombInst, nombPers, apelPatePers, apelMatePers,fechaLog, estadoAsisNuev, estadoAsisViej, acciLog from (log l inner join personal p on l.idPers = p.idPers) inner join institucion i on i.idInst = l.idIns');
+    res.json(asistenciaLogs);
+  }
   public async getOneAsistencia(req: Request, res: Response): Promise<any> {
     const { id } = req.params;
     const unaAsistencia = await pool.query(
@@ -23,6 +32,14 @@ class AsistenciaController {
     res.json({ message: 'Asistencia creada' });
   }
   public async modificarAsistencia(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    await pool.query('UPDATE asistencia set ? WHERE idAsis = ?', [
+      req.body,
+      id,
+    ]);
+    res.json({ message: 'La Asistencia fue Actualizada' });
+  }
+  public async modificarAsistenciaNuevo(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
     await pool.query('UPDATE asistencia set ? WHERE idAsis = ?', [
       req.body,

@@ -31,7 +31,6 @@ export class UsuarioListComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuario();
-    console.log(this.usuarioService.VariableGlobal);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.obtenerDATOSUSUARIO();

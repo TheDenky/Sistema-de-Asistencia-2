@@ -7,7 +7,7 @@ class UsuarioRoutes {
     this.config();
   }
   config(): void {
-    this.router.post('/register', usuarioController.createAdmin);
+    this.router.post('/register', usuarioController.create);
     this.router.post('/login', usuarioController.login);
     this.router.post('/logout', usuarioController.salir);
     this.router.post('/refresh', usuarioController.refresh);

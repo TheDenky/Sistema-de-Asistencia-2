@@ -14,4 +14,14 @@ export class LicenciaService {
   getDNI() {
     return this.http.get('/api/personal');
   }
+  licenciaget(id: string) {
+    return this.http.get(`/api/licencia/${id}`);
+  }
+  deleteLicencia(id: string) {
+    return this.http.delete(`/api/licencia/${id}`);
+  }
+  saveLicencia(licencia: Licencia) {
+    return this.http.post('/api/licencia', licencia);
+  }
+  
 }

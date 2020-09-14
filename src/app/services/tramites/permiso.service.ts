@@ -12,6 +12,9 @@ export class PermisoService {
   obper() {
     return this.http.get('/api/permiso');
   }
+  obperUser(id: string) {
+    return this.http.get(`/api/permiso/my/${id}`);
+  }
   getOnePermiso(id: string) {
     return this.http.get(`/api/permiso/${id}`);
   }

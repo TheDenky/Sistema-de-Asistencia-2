@@ -1,0 +1,134 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Asistencia</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Asistencia</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Consultar</h3>
+  
+          <div class="card-tools">
+            <button
+              type="button"
+              class="btn btn-tool"
+              data-widget="collapse"
+              data-toggle="tooltip"
+              title="Collapse"
+            >
+              <i class="fa fa-minus"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-tool"
+              data-widget="remove"
+              data-toggle="tooltip"
+              title="Remove"
+            >
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <input
+                class="form-control"
+                matInput
+                (keyup)="applyFilter($event.target.value)"
+                placeholder="Buscar Log"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+              <!-- Codigo Modular Column -->
+              <ng-container matColumnDef="nombInst">
+                <th mat-header-cell *matHeaderCellDef>Institución</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.nombInst }}
+                </td>
+              </ng-container>
+  
+              <!-- Nombre Column -->
+              <ng-container matColumnDef="nombPers">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let element">{{ element.nombPers }}</td>
+              </ng-container>
+  
+              <!-- Direccion  Column -->
+              <ng-container matColumnDef="apelPatePers">
+                <th mat-header-cell *matHeaderCellDef>Ape. Pate</th>
+                <td mat-cell *matCellDef="let element">{{ element.apelPatePers }}</td>
+              </ng-container>
+  
+              <!-- Numero Column -->
+              <ng-container matColumnDef="apelMatePers">
+                <th mat-header-cell *matHeaderCellDef>Ap. Mate</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.apelMatePers }}
+                </td>
+              </ng-container>
+  
+              <!-- Nivel Column -->
+              <ng-container matColumnDef="fechaLog">
+                <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                <td mat-cell *matCellDef="let element">{{ element.fechaLog }}</td>
+              </ng-container>
+
+              <!-- Nivel Column -->
+              <ng-container matColumnDef="estadoAsisNuev">
+                <th mat-header-cell *matHeaderCellDef>Nuevo</th>
+                <td mat-cell *matCellDef="let element">{{ element.estadoAsisNuev }}</td>
+              </ng-container>
+
+              <!-- Nivel Column -->
+              <ng-container matColumnDef="estadoAsisViej">
+                <th mat-header-cell *matHeaderCellDef>Viejo</th>
+                <td mat-cell *matCellDef="let element">{{ element.estadoAsisViej }}</td>
+              </ng-container>
+
+              <!-- Nivel Column -->
+              <ng-container matColumnDef="acciLog">
+                <th mat-header-cell *matHeaderCellDef>acción</th>
+                <td mat-cell *matCellDef="let element">{{ element.acciLog }}</td>
+              </ng-container>
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+  
+            <mat-paginator
+              [pageSizeOptions]="[30, 20, 10]"
+              showFirstLastButtons
+            ></mat-paginator>
+          </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          Footer
+        </div>
+        <!-- /.card-footer-->
+      </div>
+    </div>
+    <!-- /.card -->
+  </section>
+  <!-- /.content -->
+  

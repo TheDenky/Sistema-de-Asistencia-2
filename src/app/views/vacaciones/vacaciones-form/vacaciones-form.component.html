@@ -1,0 +1,190 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Vacaciones</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Vacaciones</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  
+  <!-- Main content -->
+  <section class="content">
+    <!-- Default box -->
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Agregar</h3>
+  
+          <div class="card-tools">
+            <button
+              type="button"
+              class="btn btn-tool"
+              data-widget="collapse"
+              data-toggle="tooltip"
+              title="Collapse"
+            >
+              <i class="fa fa-minus"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-tool"
+              data-widget="remove"
+              data-toggle="tooltip"
+              title="Remove"
+            >
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                      <input
+                        class="form-control"
+                        matInput
+                        (keyup)="applyFilter($event.target.value)"
+                        placeholder="Buscar Personal"
+                      />
+                    </div>
+                </div>
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource">
+                      <ng-container matColumnDef="dniPers">
+                        <th mat-header-cell *matHeaderCellDef>DNI</th>
+                        <td mat-cell *matCellDef="let element">{{ element.dniPers }}</td>
+                      </ng-container>
+                      <ng-container matColumnDef="nombPers">
+                        <th mat-header-cell *matHeaderCellDef>Nombres</th>
+                        <td mat-cell *matCellDef="let element">{{ element.nombPers }}</td>
+                      </ng-container>
+                      <ng-container matColumnDef="apelPatePers">
+                        <th mat-header-cell *matHeaderCellDef>Ap.Paterno</th>
+                        <td mat-cell *matCellDef="let element">
+                          {{ element.apelPatePers }}
+                        </td>
+                      </ng-container>
+                      <ng-container matColumnDef="apelMatePers">
+                        <th mat-header-cell *matHeaderCellDef>Ap.Materno</th>
+                        <td mat-cell *matCellDef="let element">
+                          {{ element.apelMatePers }}
+                        </td>
+                      </ng-container>
+                      <ng-container matColumnDef="cargPers">
+                        <th mat-header-cell *matHeaderCellDef>Cargo</th>
+                        <td mat-cell *matCellDef="let element">{{ element.cargPers }}</td>
+                      </ng-container>
+                            
+                      <ng-container matColumnDef="ACTION">
+                        <th mat-header-cell *matHeaderCellDef>Editar</th>
+                        <td mat-cell *matCellDef="let element">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="PersonalSeleccionado(element.idPers, element.dniPers)"
+                            data-toggle="modal"
+                            data-target="#exampleModal"
+                          >
+                          Seleccionar
+                            <i class="fas fa-check"></i>
+                          </button>
+                        </td>
+                      </ng-container>
+          
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+          
+                    <mat-paginator
+                      [pageSizeOptions]="[1]"
+                      showFirstLastButtons
+                    ></mat-paginator>
+                </div>
+                <hr>
+                <form>
+                  <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                      <label for="validationDefault01"
+                        >DNI personal *</label>
+                      <input
+                        type="text"
+                        disabled
+                        name="nombInst"
+                        class="form-control"
+                        maxlength="100"
+                        [(ngModel)] = "datos.dniP"
+                        id="dniPesonalLab"
+                        placeholder=""
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-6 mb-3" datepicker>
+                      <label for="validationDefault01" >Fecha Inicio *</label>
+                        <input placeholder="Select date" type="date" id="fechiInic" [(ngModel)]="vacaciones.fechinicVaca"
+                         name="fechai" class="form-control" >
+                        <label for="example"></label>
+                    </div>
+      
+                    <div class="col-md-6 mb-3" datepicker>
+                      <label for="validationDefault05">Fecha Fin *</label>
+                      <input placeholder="Select date" type="date" id="FechFin" [(ngModel)]="vacaciones.fechFinVaca" 
+                        name="fechaf" class="form-control" >
+                        <label for="example"></label>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                      <label for="validationDefault05">Motivo *</label>
+                      <input
+                        type="text"
+                        [(ngModel)]="vacaciones.motiVaca"
+                        name="motivaca"
+                        placeholder="Opcional"
+                        class="form-control"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="validationDefault01"
+                        >Descripción</label>
+                      <input
+                        type="text"
+                        [(ngModel)]="vacaciones.descVaca"
+                        name="descVaca"
+                        class="form-control"
+                        maxlength="100"
+                        id="description"
+                        placeholder=""
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <hr />
+                  <button class="btn btn-primary col-md-3" type="submit" (click)="guardarVacaciones()" >
+                    Grabar
+                  </button>
+                </form>
+              </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          Footer
+        </div>
+        <!-- /.card-footer-->
+      </div>
+    </div>
+    <!-- /.card -->
+  </section>
+  <!-- /.content -->

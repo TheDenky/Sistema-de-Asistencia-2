@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Vacaciones } from 'src/app/models/vacaciones';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,17 @@ import { HttpClient } from '@angular/common/http';
 export class VacacionService {
   constructor(private http: HttpClient) {}
 
-  vaca() {
+  obtenerAllVacaciones() {
     return this.http.get('/api/vacaciones');
   }
+  getOneVacacion(id: string) {
+    return this.http.get(`/api/vacaciones/${id}`);
+  }
+  deleteVacacion(id: string) {
+    return this.http.delete(`/api/vacaciones/${id}`);
+  }
+  saveVacacion(vacaciones: Vacaciones) {
+    return this.http.post('/api/vacaciones', vacaciones);
+  }
+  
 }

@@ -15,7 +15,7 @@ class UsuarioController {
   public async getUsuarioLogged(req: Request, res: Response): Promise<any> {
     const { id } = req.params;
     const unUsuario = await pool.query(
-      'SELECT p.idPers, i.idInst, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?',
+      'SELECT p.idPers, i.idInst, i.codiModuInst, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?',
       [id]
     );
     if (unUsuario.length > 0) {
@@ -27,7 +27,7 @@ class UsuarioController {
   public async login(req: Request, res: Response, done: any): Promise<any> {
     const { username, password } = req.body;
     const usuario = await pool.query(
-      'SELECT p.idPers, i.idInst, u.usuaUsua, u.passUsua, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?',
+      'SELECT p.idPers, i.idInst, i.codiModuInst, u.usuaUsua, u.passUsua, u.tipoUsua, u.estaUsua, p.dniPers, p.apelPatePers, p.apelMatePers, p.nombPers, p.cargPers, p.contLaboPers, p.fotoPers, i.nombInst, i.numeInst, i.niveEduInst, i.modaInst, i.turnInst, i.direInst FROM usuario u inner join personal p on u.idPers = p.idPers inner join institucion i on u.idInst = i.idInst WHERE usuaUsua = ?',
       [username]
     );
     console.log(usuario.length);
@@ -68,17 +68,17 @@ class UsuarioController {
   }
 
   public async create(req: Request, res: Response): Promise<void> {
-    const { username, password, estado, tipo } = req.body;
-    const encriptada = await helper.encryptPassword(password);
+    const {idPers, idInst, usuaUsua, passUsua, tipoUsua, estaUsua } = req.body;
+    const encriptada = await helper.encryptPassword(passUsua);
 
-    const {id} = req.headers;
-    console.log(id); 
+    //const {id} = req.headers;
+    //console.log(id); 
 
     const result = await pool.query(
-      'INSERT INTO usuario(idPers, usuaUsua, passUsua, tipoUsua, estaUsua) values(?,?,?,?,?)',
-      [username, encriptada, tipo, estado ]
+      'INSERT INTO usuario(idPers, idInst, usuaUsua, passUsua, tipoUsua, estaUsua) values(?,?,?,?,?,?)',
+      [idPers, idInst, usuaUsua, encriptada, tipoUsua, estaUsua ]
     );
-    //res.json({message : 'Usuario guardado'});
+    res.json({message : 'Usuario guardado'});
   }
 
   public salir(req: Request, res: Response) {

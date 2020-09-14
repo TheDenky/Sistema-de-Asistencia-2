@@ -6,6 +6,11 @@ class TardanzaController {
     const tardanzaLista = await pool.query('SELECT * FROM tardanza');
     res.json(tardanzaLista);
   }
+  public async listarTardanzaUnoSolo(req: Request, res: Response) {
+    const { id } = req.params;
+    const tardanzaLista = await pool.query('SELECT * FROM tardanza where idPers = ?', [id]);
+    res.json(tardanzaLista);
+  }
   public async getOneTardanza(req: Request, res: Response): Promise<any> {
     const { id } = req.params;
     const unaTardanza = await pool.query(

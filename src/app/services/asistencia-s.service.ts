@@ -12,6 +12,12 @@ export class AsistenciaSService {
   getAsis() {
     return this.http.get('/api/asistencia');
   }
+  getAsisUsuario(id: string) {
+    return this.http.get(`/api/asistencia/my/${id}`);
+  }
+  getLog(){
+    return this.http.get('/api/asistencia/logs');
+  }
   asisget(id: string) {
     return this.http.get(`/api/asistencia/${id}`);
   }
@@ -26,5 +32,11 @@ export class AsistenciaSService {
     updatedAsistencia: Asistencia
   ): Observable<Asistencia> {
     return this.http.put(`/api/asistencia/${id}`, updatedAsistencia);
+  }
+  updateAsistenciaNuevo(
+    id: string | number,
+    updatedAsistencia: Asistencia
+  ): Observable<Asistencia> {
+    return this.http.put(`/api/asistencia/mod/${id}`, updatedAsistencia);
   }
 }

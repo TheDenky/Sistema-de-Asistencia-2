@@ -16,13 +16,13 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         <img
-          src="assets/img/user2-160x160.jpg"
+          src="assets/img/usuarionuevo.jpg "
           class="img-circle elevation-2"
           alt="User Image"
         />
       </div>
       <div class="info">
-        <a [routerLink]="['/profile']" class="d-block">{{USER.nombPers}}&nbsp;{{USER.apelPatePers}}&nbsp;{{USER.apelMatePers}}</a>
+        <a [routerLink]="['/profile']" class="d-block">{{USER.nombPers}}</a>
       </div>
     </div>
 
@@ -124,25 +124,13 @@
         <!--Inicio Trámite-->
         <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-file-alt"></i>
+            <i class="nav-icon fas fa-eye"></i>
             <p>
-              Trámites
+              Observaciones
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a [routerLink]="['/blank']" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Justificación</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a [routerLink]="['/blank']" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Licencia</p>
-              </a>
-            </li>
             <li class="nav-item">
               <a [routerLink]="['/permiso/list']" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -157,9 +145,82 @@
             </li>
           </ul>
         </li>
-        <!--Fin Trámite-->
-        <li  *ngIf="USER.tipoUsua == 'Director'" class="nav-header">ACCESO</li>
+
         <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-plane-departure"></i>
+            <p>
+              Vacaciones
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['/vacaciones/add']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Registrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/vacaciones/list']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Consultar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>
+              Licencia
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['/licencia/add']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Registrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/licencia/list']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Consultar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!--
+        <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              Justificación
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['/asistencia/register']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Registrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/asistencia/list']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Consultar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        -->
+        <!--Fin Trámite-->
+        <li  *ngIf="USER.tipoUsua == 'Ugel'" class="nav-header">ACCESO</li>
+        <li *ngIf="USER.tipoUsua == 'Ugel'" class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>
@@ -185,13 +246,22 @@
         <!--Fin de acceso-->
         <li  *ngIf="USER.tipoUsua == 'Ugel' || USER.tipoUsua == 'Director'" class="nav-header">REPORTES</li>
         <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item">
-          <a [routerLink]="['/']" class="nav-link">
-            <i class="nav-icon fas fa-chart-bar"></i>
+          <a [routerLink]="['/reporte-asistencia']" class="nav-link">
+            <i class="nav-icon fas fa-list-alt"></i>
             <p>
-              &nbsp;Reporte Mensual
+              &nbsp;Reporte Asistencia
             </p>
           </a>
         </li>
+        <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item">
+          <a [routerLink]="['/reporte-consolidado']" class="nav-link">
+            <i class="nav-icon fas fa-chart-bar"></i>
+            <p>
+              &nbsp;Reporte Consolidado
+            </p>
+          </a>
+        </li>
+        <!--
         <li *ngIf="USER.tipoUsua == 'Ugel'" class="nav-item">
           <a [routerLink]="['/blank']" class="nav-link">
             <i class="nav-icon fas fa-file-excel"></i>
@@ -200,17 +270,35 @@
             </p>
           </a>
         </li>
+        -->
         <li *ngIf="USER.tipoUsua == 'Docente'" class="nav-item">
-          <a [routerLink]="['/blank']" class="nav-link">
-            <i class="nav-icon fas fa-chart-bar"></i>
+          <a [routerLink]="['/mis-asistencias']" class="nav-link">
+            <i class="nav-icon fas fa-tasks"></i>
             <p>
-              &nbsp;Informe Docente
+              &nbsp;Mis Asistencias
             </p>
           </a>
         </li>
+        <li *ngIf="USER.tipoUsua == 'Docente'" class="nav-item">
+          <a [routerLink]="['/mis-tardanzas']" class="nav-link">
+            <i class="nav-icon fas fa-clock"></i>
+            <p>
+              &nbsp;Mis Tardanzas
+            </p>
+          </a>
+        </li>
+        <li *ngIf="USER.tipoUsua == 'Docente'" class="nav-item">
+          <a [routerLink]="['/mis-permisos']" class="nav-link">
+            <i class="nav-icon fas fa-parking"></i>
+            <p>
+              &nbsp;Mis Permisos
+            </p>
+          </a>
+        </li>
+        
         <li *ngIf="USER.tipoUsua == 'Admin'" class="nav-header">AUDITORIA</li>
         <li *ngIf="USER.tipoUsua == 'Admin'" class="nav-item">
-          <a [routerLink]="['/blank']" class="nav-link">
+          <a [routerLink]="['/logs']" class="nav-link">
             <i class="nav-icon fas fa-file-excel"></i>
             <p>
               &nbsp;Logs

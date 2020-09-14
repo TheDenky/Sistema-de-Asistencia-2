@@ -8,9 +8,12 @@ class AsistenciaRoutes {
   }
   config(): void {
     this.router.get('/', asistenciaController.listarAsistencia);
+    this.router.get('/logs', asistenciaController.logs);
+    this.router.get('/my/:id', asistenciaController.listarAsistenciaUnoSolo);
     this.router.get('/:id', asistenciaController.getOneAsistencia);
     this.router.post('/', asistenciaController.crearAsistencia);
     this.router.put('/:id', asistenciaController.modificarAsistencia);
+    this.router.put('/mod/:id', asistenciaController.modificarAsistenciaNuevo);
     this.router.delete('/:id', asistenciaController.borrarAsistencia);
   }
 }

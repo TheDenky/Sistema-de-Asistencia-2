@@ -23,6 +23,16 @@ import { MainGuard } from './utils/guards/main.guard';
 import { TardanzaComponent } from './views/tardanza/tardanza.component';
 import { TardanzaListComponent } from './views/tardanza/tardanza-list/tardanza-list.component';
 import { PermisoListComponent } from './views/permiso/permiso-list/permiso-list.component';
+import { VacacionesFormComponent } from './views/vacaciones/vacaciones-form/vacaciones-form.component';
+import { VacacionesListComponent } from './views/vacaciones/vacaciones-list/vacaciones-list.component';
+import { LicenciaFormComponent } from './views/licencia/licencia-form/licencia-form.component';
+import { LicenciaListComponent } from './views/licencia/licencia-list/licencia-list.component';
+import { ReporteAsistenciaComponent } from './views/reporte-asistencia/reporte-asistencia.component';
+import { ReporteConsolidadoComponent } from './views/reporte-consolidado/reporte-consolidado.component';
+import { MisAsistenciasComponent } from './views/mis-asistencias/mis-asistencias.component';
+import { MisTardanzasComponent } from './views/mis-tardanzas/mis-tardanzas.component';
+import { MisPermisosComponent } from './views/mis-permisos/mis-permisos.component';
+import { LogsComponent } from './views/logs/logs.component';
 
 const routes: Routes = [
   {
@@ -93,6 +103,46 @@ const routes: Routes = [
       {
         path: 'permiso/list',
         component: PermisoListComponent,
+      },
+      {
+        path: 'vacaciones/add',
+        component: VacacionesFormComponent,
+      },
+      {
+        path: 'vacaciones/list',
+        component: VacacionesListComponent,
+      },
+      {
+        path: 'licencia/add',
+        component: LicenciaFormComponent,
+      },
+      {
+        path: 'licencia/list',
+        component: LicenciaListComponent,
+      },
+      {
+        path: 'reporte-asistencia',
+        component: ReporteAsistenciaComponent,
+      },
+      {
+        path: 'reporte-consolidado',
+        component: ReporteConsolidadoComponent,
+      },
+      {
+        path: 'mis-asistencias',
+        component: MisAsistenciasComponent,
+      },
+      {
+        path: 'mis-tardanzas',
+        component: MisTardanzasComponent,
+      },
+      {
+        path: 'mis-permisos',
+        component: MisPermisosComponent,
+      },
+      {
+        path: 'logs',
+        component: LogsComponent,
       },
       {
         path: '',

@@ -61,16 +61,16 @@
             <table mat-table [dataSource]="dataSource">
               <!-- Codigo Modular Column -->
               <ng-container matColumnDef="idlice">
-                <th mat-header-cell *matHeaderCellDef>Id Licencia</th>
+                <th mat-header-cell *matHeaderCellDef>DNI</th>
                 <td mat-cell *matCellDef="let element">
-                  {{ element.idlice }}
+                  {{ element.dniPers }}
                 </td>
               </ng-container>
   
               <!-- Nombre Column -->
               <ng-container matColumnDef="idPers">
-                <th mat-header-cell *matHeaderCellDef>Id Persona</th>
-                <td mat-cell *matCellDef="let element">{{ element.idPers }}</td>
+                <th mat-header-cell *matHeaderCellDef>Nombres y Apellidos</th>
+                <td mat-cell *matCellDef="let element">{{ element.ApellidosyNombres }}</td>
               </ng-container>
 
               <!-- Nivel Column -->
@@ -88,41 +88,19 @@
               <!-- Direccion  Column -->
               <ng-container matColumnDef="fechIniLice">
                 <th mat-header-cell *matHeaderCellDef>Fecha Inicio</th>
-                <td mat-cell *matCellDef="let element">{{ element.fechIniLice }}</td>
+                <td mat-cell *matCellDef="let element">{{element.fechIniLice | date: 'dd/MM/yyyy'}}</td>
               </ng-container>
   
               <!-- Numero Column -->
               <ng-container matColumnDef="fechFinLice">
                 <th mat-header-cell *matHeaderCellDef>Fecha Fin</th>
-                <td mat-cell *matCellDef="let element">{{ element.fechFinLice }}</td>
+                <td mat-cell *matCellDef="let element">{{element.fechFinLice | date: 'dd/MM/yyyy'}}</td>
               </ng-container>
   
               <!-- Nivel Column -->
               <ng-container matColumnDef="obseLice">
                 <th mat-header-cell *matHeaderCellDef>Observación</th>
                 <td mat-cell *matCellDef="let element">{{ element.obseLice }}</td>
-              </ng-container>
-
-              <!-- Nivel Column -->
-              <ng-container matColumnDef="docuLice">
-                <th mat-header-cell *matHeaderCellDef>Doc</th>
-                <td mat-cell *matCellDef="let element">{{ element.docuLice }}</td>
-              </ng-container>
-  
-              <!-- action Column -->
-              <ng-container matColumnDef="ACTION">
-                <th mat-header-cell *matHeaderCellDef>EDITAR</th>
-                <td mat-cell *matCellDef="let element">
-                  <button
-                    type="button"
-                    class="btn btn-outline-warning"
-                    [routerLink]="['/']"
-                    data-toggle="modal"
-                    data-target="#ventanaModal"
-                  >
-                    <i class="fas fa-edit"></i>
-                  </button>
-                </td>
               </ng-container>
   
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

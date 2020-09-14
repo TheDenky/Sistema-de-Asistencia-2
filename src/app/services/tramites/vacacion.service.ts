@@ -11,6 +11,9 @@ export class VacacionService {
   obtenerAllVacaciones() {
     return this.http.get('/api/vacaciones');
   }
+  obtenerAllVacacionesNombres() {
+    return this.http.get('/api/vacaciones/ln');
+  }
   getOneVacacion(id: string) {
     return this.http.get(`/api/vacaciones/${id}`);
   }

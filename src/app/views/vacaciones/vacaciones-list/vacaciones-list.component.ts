@@ -21,7 +21,6 @@ export class VacacionesListComponent implements OnInit {
     'fechFinVaca',
     'descVaca',
     'motiVaca',
-    'ACTION',
   ];
   dataSource = new MatTableDataSource<Vacaciones>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -34,7 +33,7 @@ export class VacacionesListComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   public obtenerVacacion() {
-    let vacacion = this.vacacionService.obtenerAllVacaciones();
+    let vacacion = this.vacacionService.obtenerAllVacacionesNombres();
     vacacion.subscribe((report) => (this.dataSource.data = report as Vacaciones[]));
   }
   applyFilter(filterValue: string) {

@@ -20,7 +20,6 @@ export class TardanzaListComponent implements OnInit {
     'horaTard',
     'minuTard',
     'fechaTard',
-    'ACTION',
   ];
   dataSource = new MatTableDataSource<Tardanza>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -29,12 +28,12 @@ export class TardanzaListComponent implements OnInit {
   constructor(private tardanzaService: TardanzaService) { }
 
   ngOnInit(): void {
-    this.obtenerTardancia();
+    this.obtenerTardanzaNombre();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  public obtenerTardancia() {
-    let asi = this.tardanzaService.getAllTardanza();
+  public obtenerTardanzaNombre() {
+    let asi = this.tardanzaService.getAllTardanzaNombres();
     asi.subscribe((report) => (this.dataSource.data = report as Tardanza[]));
   }
   applyFilter(filterValue: string) {

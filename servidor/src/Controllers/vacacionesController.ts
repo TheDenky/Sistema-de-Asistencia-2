@@ -6,6 +6,10 @@ class VacacionesController {
     const licenciaLista = await pool.query('SELECT * FROM vacaciones');
     res.json(licenciaLista);
   }
+  public async listarVacacionesNombres(req: Request, res: Response) {
+    const licenciaLista = await pool.query('select idVaca, p.idPers, fechinicVaca, fechFinVaca, descVaca, motiVaca, dniPers, concat(p.nombPers," ",p.apelPatePers," ",p.apelMatePers) as "ApellidosyNombres" from vacaciones v inner join personal p on v.idPers = p.idPers;');
+    res.json(licenciaLista);
+  }
   public async getOneVacacion(req: Request, res: Response): Promise<any> {
     const { id } = req.params;
     const unaVacacion = await pool.query(

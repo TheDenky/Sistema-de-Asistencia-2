@@ -16,7 +16,6 @@ export class MisPermisosComponent implements OnInit {
   ELEMENT_DATA: Permiso[];
   public USER: any;
   displayedColumns: string[] = [
-    'idPerm',
     'idPers',
     'horaPerm',
     'minutoPerm',

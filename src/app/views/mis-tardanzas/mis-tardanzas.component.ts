@@ -16,8 +16,6 @@ export class MisTardanzasComponent implements OnInit {
   ELEMENT_DATA: Tardanza[];
   public USER: any;
   displayedColumns: string[] = [
-    'idtard',
-    'idPers',
     'horaTard',
     'minuTard',
     'fechaTard',

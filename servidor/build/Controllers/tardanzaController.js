@@ -21,6 +21,12 @@ class TardanzaController {
             res.json(tardanzaLista);
         });
     }
+    listarTardanzaNombre(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const tardanzaLista = yield database_1.default.query('select idtard, dniPers, concat(p.nombPers," ",p.apelPatePers," ",p.apelMatePers) as "ApellidosyNombres", horaTard, minuTard, fechaTard from tardanza t inner join personal p on t.idPers = p.idPers');
+            res.json(tardanzaLista);
+        });
+    }
     listarTardanzaUnoSolo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

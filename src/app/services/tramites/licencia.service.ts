@@ -11,6 +11,9 @@ export class LicenciaService {
   getLice() {
     return this.http.get('/api/licencia');
   }
+  getLiceNombres() {
+    return this.http.get('/api/licencia/ln');
+  }
   getDNI() {
     return this.http.get('/api/personal');
   }

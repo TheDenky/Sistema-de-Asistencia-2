@@ -6,6 +6,10 @@ class TardanzaController {
     const tardanzaLista = await pool.query('SELECT * FROM tardanza');
     res.json(tardanzaLista);
   }
+  public async listarTardanzaNombre(req: Request, res: Response) {
+    const tardanzaLista = await pool.query('select idtard, dniPers, concat(p.nombPers," ",p.apelPatePers," ",p.apelMatePers) as "ApellidosyNombres", horaTard, minuTard, fechaTard from tardanza t inner join personal p on t.idPers = p.idPers');
+    res.json(tardanzaLista);
+  }
   public async listarTardanzaUnoSolo(req: Request, res: Response) {
     const { id } = req.params;
     const tardanzaLista = await pool.query('SELECT * FROM tardanza where idPers = ?', [id]);

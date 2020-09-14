@@ -16,12 +16,8 @@ export class MisAsistenciasComponent implements OnInit {
   ELEMENT_DATA: Asistencia[];
   public USER: any;
   displayedColumns: string[] = [
-    'idAsis',
-    'idPers',
-    'idInst',
     'estaAsis',
     'fechAsis',
-    'ACTION',
   ];
   dataSource = new MatTableDataSource<Asistencia>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

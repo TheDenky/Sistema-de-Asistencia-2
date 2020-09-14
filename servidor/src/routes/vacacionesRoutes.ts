@@ -8,6 +8,7 @@ class VacacionesRoutes {
   }
   config(): void {
     this.router.get('/', vacacionesController.listarVacaciones);
+    this.router.get('/ln', vacacionesController.listarVacacionesNombres);
     this.router.get('/:id', vacacionesController.getOneVacacion);
     this.router.post('/', vacacionesController.crearVacacion);
     this.router.put('/:id', vacacionesController.modificarVacacion);

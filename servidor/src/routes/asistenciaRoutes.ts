@@ -8,6 +8,7 @@ class AsistenciaRoutes {
   }
   config(): void {
     this.router.get('/', asistenciaController.listarAsistencia);
+    this.router.get('/ln', asistenciaController.listarAsistenciaNombres);
     this.router.get('/logs', asistenciaController.logs);
     this.router.get('/my/:id', asistenciaController.listarAsistenciaUnoSolo);
     this.router.get('/:id', asistenciaController.getOneAsistencia);

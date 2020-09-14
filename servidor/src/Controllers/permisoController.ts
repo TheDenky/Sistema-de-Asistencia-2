@@ -6,6 +6,11 @@ class PermisoController {
     const permisoLista = await pool.query('SELECT * FROM permiso');
     res.json(permisoLista);
   }
+  public async listarPermisoNombre(req: Request, res: Response) {
+    const permisoLista = await pool.query('select idPerm, p.idPers, dniPers, concat(pe.nombPers," ",pe.apelPatePers," ",pe.apelMatePers) as "ApellidosyNombres", p.horaPerm, p.minutoPerm, p.fechaPerm, p.obsePerm, p.motiPerm from permiso p inner join personal pe on p.idPers = pe.idPers');
+    res.json(permisoLista);
+  }
+  
   public async listarPermisoUnoSolo(req: Request, res: Response) {
     const { id } = req.params;
     const permisoLista = await pool.query('SELECT * FROM permiso where idPers = ?', [id]);

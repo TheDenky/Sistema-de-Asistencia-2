@@ -21,7 +21,6 @@ export class ConsultarComponent implements OnInit {
   displayedColumns: string[] = [
     'idAsis',
     'idPers',
-    'idInst',
     'estaAsis',
     'fechAsis',
     'ACTION',
@@ -41,12 +40,12 @@ export class ConsultarComponent implements OnInit {
   asist: any = [];
 
   ngOnInit(): void {
-    this.obtenerAsis();
+    this.obtenerAsisNombres();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  public obtenerAsis() {
-    let asi = this.asisService.getAsis();
+  public obtenerAsisNombres() {
+    let asi = this.asisService.getAsisNombres();
     asi.subscribe((report) => (this.dataSource.data = report as Asistencia[]));
   }
   editAsistencia(id: string) {

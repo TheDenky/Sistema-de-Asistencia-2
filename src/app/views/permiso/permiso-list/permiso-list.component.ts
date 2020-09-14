@@ -22,7 +22,6 @@ export class PermisoListComponent implements OnInit {
     'fechaPerm',
     'obsePerm',
     'motiPerm',
-    'ACTION',
   ];
   dataSource = new MatTableDataSource<Permiso>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -30,12 +29,12 @@ export class PermisoListComponent implements OnInit {
   constructor(private permisoService: PermisoService) { }
 
   ngOnInit(): void {
-    this.obtenerPermiso();
+    this.obtenerPermisoNombre();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  public obtenerPermiso() {
-    let asi = this.permisoService.obper();
+  public obtenerPermisoNombre() {
+    let asi = this.permisoService.obperNombre();
     asi.subscribe((report) => (this.dataSource.data = report as Permiso[]));
   }
   applyFilter(filterValue: string) {

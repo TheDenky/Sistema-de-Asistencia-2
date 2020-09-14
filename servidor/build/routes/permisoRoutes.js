@@ -9,6 +9,7 @@ class PermisoRoutes {
     }
     config() {
         this.router.get('/', permisoController_1.permisoController.listarPermiso);
+        this.router.get('/ln', permisoController_1.permisoController.listarPermisoNombre);
         this.router.get('/my/:id', permisoController_1.permisoController.listarPermisoUnoSolo);
         this.router.get('/:id', permisoController_1.permisoController.getOnePermiso);
         this.router.post('/', permisoController_1.permisoController.crearPermiso);

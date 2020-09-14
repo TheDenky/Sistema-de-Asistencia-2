@@ -8,6 +8,7 @@ class TardanzaRoutes {
   }
   config(): void {
     this.router.get('/', tardanzaController.listarTardanza);
+    this.router.get('/ln', tardanzaController.listarTardanzaNombre);
     this.router.get('/my/:id', tardanzaController.listarTardanzaUnoSolo);
     this.router.get('/:id', tardanzaController.getOneTardanza);
     this.router.post('/', tardanzaController.crearTardanza);

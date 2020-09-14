@@ -6,6 +6,10 @@ class AsistenciaController {
     const asistenciaLista = await pool.query('SELECT * FROM asistencia');
     res.json(asistenciaLista);
   }
+  public async listarAsistenciaNombres(req: Request, res: Response) {
+    const asistenciaLista = await pool.query('select idAsis, dniPers, idInst, concat(p.nombPers," ",p.apelPatePers," ",p.apelMatePers) as "ApellidosyNombres", estaAsis, fechAsis from asistencia a inner join personal p on a.idPers = p.idPers;');
+    res.json(asistenciaLista);
+  }
   public async listarAsistenciaUnoSolo(req: Request, res: Response) {
     const { id } = req.params;
     const asistenciaLista = await pool.query('SELECT * FROM asistencia where idPers = ?', [id]);

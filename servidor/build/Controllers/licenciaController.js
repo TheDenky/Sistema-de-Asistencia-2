@@ -21,6 +21,12 @@ class LicenciaController {
             res.json(licenciaLista);
         });
     }
+    listarLicenciaNombres(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const licenciaLista = yield database_1.default.query('select idlice, l.idPers, tipoLice, motiLice, fechIniLice, fechFinLice, obseLice, dniPers, concat(p.nombPers," ",p.apelPatePers," ",p.apelMatePers) as "ApellidosyNombres" from licencia l inner join personal p on l.idPers = p.idPers');
+            res.json(licenciaLista);
+        });
+    }
     getOneLicencia(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

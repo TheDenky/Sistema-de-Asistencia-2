@@ -8,6 +8,7 @@ class LicenciaRoutes {
   }
   config(): void {
     this.router.get('/', licenciaController.listarLicencia);
+    this.router.get('/ln', licenciaController.listarLicenciaNombres);
     this.router.get('/:id', licenciaController.getOneLicencia);
     this.router.post('/', licenciaController.crearLicencia);
     this.router.put('/:id', licenciaController.modificarLicencia);

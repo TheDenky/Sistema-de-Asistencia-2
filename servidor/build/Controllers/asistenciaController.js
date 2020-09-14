@@ -21,6 +21,12 @@ class AsistenciaController {
             res.json(asistenciaLista);
         });
     }
+    listarAsistenciaNombres(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const asistenciaLista = yield database_1.default.query('select idAsis, dniPers, idInst, concat(p.nombPers," ",p.apelPatePers," ",p.apelMatePers) as "ApellidosyNombres", estaAsis, fechAsis from asistencia a inner join personal p on a.idPers = p.idPers;');
+            res.json(asistenciaLista);
+        });
+    }
     listarAsistenciaUnoSolo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

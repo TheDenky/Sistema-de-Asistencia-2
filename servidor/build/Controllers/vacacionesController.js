@@ -21,6 +21,12 @@ class VacacionesController {
             res.json(licenciaLista);
         });
     }
+    listarVacacionesNombres(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const licenciaLista = yield database_1.default.query('select idVaca, p.idPers, fechinicVaca, fechFinVaca, descVaca, motiVaca, dniPers, concat(p.nombPers," ",p.apelPatePers," ",p.apelMatePers) as "ApellidosyNombres" from vacaciones v inner join personal p on v.idPers = p.idPers;');
+            res.json(licenciaLista);
+        });
+    }
     getOneVacacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

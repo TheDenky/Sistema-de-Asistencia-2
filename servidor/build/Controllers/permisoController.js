@@ -21,6 +21,12 @@ class PermisoController {
             res.json(permisoLista);
         });
     }
+    listarPermisoNombre(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const permisoLista = yield database_1.default.query('select idPerm, p.idPers, dniPers, concat(pe.nombPers," ",pe.apelPatePers," ",pe.apelMatePers) as "ApellidosyNombres", p.horaPerm, p.minutoPerm, p.fechaPerm, p.obsePerm, p.motiPerm from permiso p inner join personal pe on p.idPers = pe.idPers');
+            res.json(permisoLista);
+        });
+    }
     listarPermisoUnoSolo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

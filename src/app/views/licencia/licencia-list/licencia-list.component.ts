@@ -22,8 +22,6 @@ export class LicenciaListComponent implements OnInit {
     'fechIniLice',
     'fechFinLice',
     'obseLice',
-    'docuLice',
-    'ACTION',
   ];
   dataSource = new MatTableDataSource<Licencia>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -37,7 +35,7 @@ export class LicenciaListComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   public obtenerLicencia() {
-    let licencia = this.licenciaService.getLice();
+    let licencia = this.licenciaService.getLiceNombres();
     licencia.subscribe((report) => (this.dataSource.data = report as Licencia[]));
   }
   applyFilter(filterValue: string) {

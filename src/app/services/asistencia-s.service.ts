@@ -12,6 +12,9 @@ export class AsistenciaSService {
   getAsis() {
     return this.http.get('/api/asistencia');
   }
+  getAsisNombres() {
+    return this.http.get('/api/asistencia/ln');
+  }
   getAsisUsuario(id: string) {
     return this.http.get(`/api/asistencia/my/${id}`);
   }

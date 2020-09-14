@@ -6,6 +6,10 @@ class LicenciaController {
     const licenciaLista = await pool.query('SELECT * FROM licencia');
     res.json(licenciaLista);
   }
+  public async listarLicenciaNombres(req: Request, res: Response) {
+    const licenciaLista = await pool.query('select idlice, l.idPers, tipoLice, motiLice, fechIniLice, fechFinLice, obseLice, dniPers, concat(p.nombPers," ",p.apelPatePers," ",p.apelMatePers) as "ApellidosyNombres" from licencia l inner join personal p on l.idPers = p.idPers');
+    res.json(licenciaLista);
+  }
   public async getOneLicencia(req: Request, res: Response): Promise<any> {
     const { id } = req.params;
     const unaLicencia = await pool.query(

@@ -41,7 +41,7 @@
          <td>&nbsp;</td>
          <td>&nbsp;</td>
          <td>AÑO:</td>
-         <td>2019</td>
+         <td>2020</td>
          <td>&nbsp;</td>
          <td>&nbsp;</td>
          <td>&nbsp;</td>
@@ -49,14 +49,14 @@
          <td>TURNO:</td>
          <td>&nbsp;</td>
          <td>&nbsp;</td>
-         <td>Mañana</td>
+         <td>{{USER.turnInst}}</td>
          <td>&nbsp;</td>
          <td>&nbsp;</td>
          <td>&nbsp;</td>
          <td>&nbsp;</td>
         </tr>
      <tr><td>INSTITUCIÓN EDUCATIVA:</td>
-        <td>JOSE OLAYA BALANDRA</td>
+        <td>{{USER.nombInst}}</td>
         <td>&nbsp;</td><td>&nbsp;</td>
         <td>&nbsp;</td><td>&nbsp;</td>
         <td>&nbsp;</td><td>&nbsp;</td>
@@ -70,14 +70,14 @@
         <td>&nbsp;</td><td>&nbsp;</td>
     </tr>
      <tr><td>NIVEL EDUCATIVO Y/O MODALIDAD:</td>
-        <td>Secundaria</td>
+        <td>{{USER.niveEduInst}}</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>LUGAR:</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>AVENIDA PASEO DE LA REPUBLICA S/N</td>
+        <td>{{USER.direInst}}</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -96,13 +96,13 @@
     </tr>
      <tr>
          <td>CODIGO MODULAR:</td>
-        <td>0575480</td>
+        <td>{{USER.codiModuInst}}</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>REG/PROV/DIST:</td>
+        <td>REG/PROV:</td>
         <td>&nbsp;</td>
-        <td>Apurímac / Andahuaylas / Pacucha</td>
+        <td>Apurímac / Andahuaylas</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -204,23 +204,23 @@
          <td>&nbsp;</td>
          <td>&nbsp;</td>
         </tr>
-     <tr
+     <tr  *ngFor="let person of ELEMENT_DATA"
      ><td>1</td>
-     <td>31141632</td>
-     <td>VARGAS MUÑOZ AMERICO</td>
-     <td>Director</td>
-     <td>Encarg. Nombrado</td>
-     <td>40</td>
+     <td>{{person.DNI}}</td>
+     <td>{{person.ApellidosyNombres}}</td>
+     <td>{{person.Cargo}}</td>
+     <td>{{person.CondicionLaboral}}</td>
+     <td>{{person.JornadaLaboral}}</td>
      <td>&nbsp;</td>
-     <td>1</td>
+     <td>{{person.Asistencias}}</td>
      <td>&nbsp;</td>
+     <td>&nbsp;0</td>
+     <td>&nbsp;0</td>
      <td>&nbsp;</td>
+     <td>&nbsp;0</td>
+     <td>&nbsp;0</td>
      <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
-     <td>&nbsp;</td>
+     <td>&nbsp;0</td>
      <td>&nbsp;</td>
      <td>&nbsp;</td>
      <td>&nbsp;</td>

@@ -22,6 +22,20 @@ class PersonalController {
             res.json(personalLista);
         });
     }
+    listConsolidada(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //res.json({text: 'listing personal'})
+            const personalLista = yield database_1.default.query('SELECT p.dniPers AS DNI, CONCAT(p.apelPatePers," ",p.apelMatePers," ",p.nombPers) AS "ApellidosyNombres",p.cargPers AS Cargo,p.contLaboPers AS "CondicionLaboral",p.jornLaboPers AS "JornadaLaboral",COUNT(estaAsis) AS Asistencias FROM asistencia a INNER JOIN personal p ON a.idPers=p.idPers  WHERE estaAsis=1 GROUP BY a.idPers');
+            res.json(personalLista);
+        });
+    }
+    listAsistencia(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //res.json({text: 'listing personal'})
+            const personalLista = yield database_1.default.query('select dniPers, apelPatePers, apelMatePers, nombPers, cargPers, contLaboPers, jornLaboPers from personal p inner join asistencia a on p.idPers = a.idPers group by p.dniPers');
+            res.json(personalLista);
+        });
+    }
     getOnePersonal(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //res.json({text: 'This is a personal' + req.params.id})

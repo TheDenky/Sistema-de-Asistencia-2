@@ -1,41 +1,34 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as xlsx from 'xlsx';
 
+import { PersonalService } from '../../services/personal.service';
+import { Personal } from '../../models/personal';
+
 @Component({
   selector: 'app-reporte-asistencia',
   templateUrl: './reporte-asistencia.component.html',
-  styleUrls: ['./reporte-asistencia.component.scss']
+  styleUrls: ['./reporte-asistencia.component.scss'],
+  providers: [PersonalService],
 })
 export class ReporteAsistenciaComponent implements OnInit {
-  
+  ELEMENT_DATA: Personal[];
   public USER: any;
   @ViewChild('epltable', { static: false }) epltable: ElementRef;
-  personal: any = [{
-    idPers: 1,
-    dniPers: '3652145',
-    apelPatePers: 'apellido',
-    apelMatePers: 'materno',
-    nombPers: 'miName',
-    cargPers: 'Docente',
-    contLaboPers: 'Nombrado',
-    jornLaboPers: 40,
-    fotoPers: null,
-  },
-  {
-    idPers: 2,
-    dniPers: '5214621',
-    apelPatePers: 'Mamani',
-    apelMatePers: 'Gonzales',
-    nombPers: 'Juan',
-    cargPers: 'Director',
-    contLaboPers: 'Nombrado',
-    jornLaboPers: 32,
-    fotoPers: null,
-  }];
-  constructor() { }
+
+  constructor(private personalService: PersonalService) { }
 
   ngOnInit(): void {
+    this.obtenerPersonalAsistencia();
     this.obtenerDATOSUSUARIO();
+  }
+  public obtenerPersonalAsistencia() {
+    this.personalService.getPersonalAsistencia().subscribe(
+      (res) => {
+        this.ELEMENT_DATA = res as Personal[];
+        console.log(this.ELEMENT_DATA);
+      },
+      (err) => console.error(err)
+    );
   }
   obtenerDATOSUSUARIO (){
     this.USER = JSON.parse( localStorage.getItem("DATOSUSUARIO"));
@@ -46,7 +39,7 @@ export class ReporteAsistenciaComponent implements OnInit {
     xlsx.utils.table_to_sheet(this.epltable.nativeElement);
     const wb: xlsx.WorkBook = xlsx.utils.book_new();
     xlsx.utils.book_append_sheet(wb, ws, 'Sheet1');
-    xlsx.writeFile(wb, 'epltable.xlsx');
+    xlsx.writeFile(wb, 'Reporte_Asistencia.xlsx');
    }
 
 }

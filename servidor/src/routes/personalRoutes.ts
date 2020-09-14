@@ -9,6 +9,8 @@ class PersonalRoutes {
   }
   config(): void {
     this.router.get('/', personalController.list);
+    this.router.get('/cons/', personalController.listConsolidada);
+    this.router.get('/asis/', personalController.listAsistencia);
     this.router.get('/:id', personalController.getOnePersonal);
     this.router.post('/', personalController.create);
     this.router.put('/:id', personalController.update);

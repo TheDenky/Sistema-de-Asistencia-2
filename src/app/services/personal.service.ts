@@ -13,7 +13,12 @@ export class PersonalService {
   getPersonal() {
     return this.http.get('/api/personal');
   }
-
+  getPersonalConsolidado() {
+    return this.http.get('/api/personal/cons');
+  }
+  getPersonalAsistencia() {
+    return this.http.get('/api/personal/asis');
+  }
   getOnePersonal(id: string) {
     return this.http.get(`/api/personal/${id}`);
   }

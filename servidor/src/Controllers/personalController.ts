@@ -7,6 +7,16 @@ class PersonalController {
     const personalLista = await pool.query('SELECT * FROM personal');
     res.json(personalLista);
   }
+  public async listConsolidada(req: Request, res: Response) {
+    //res.json({text: 'listing personal'})
+    const personalLista = await pool.query('SELECT p.dniPers AS DNI, CONCAT(p.apelPatePers," ",p.apelMatePers," ",p.nombPers) AS "ApellidosyNombres",p.cargPers AS Cargo,p.contLaboPers AS "CondicionLaboral",p.jornLaboPers AS "JornadaLaboral",COUNT(estaAsis) AS Asistencias FROM asistencia a INNER JOIN personal p ON a.idPers=p.idPers  WHERE estaAsis=1 GROUP BY a.idPers');
+    res.json(personalLista);
+  }
+  public async listAsistencia(req: Request, res: Response) {
+    //res.json({text: 'listing personal'})
+    const personalLista = await pool.query('select dniPers, apelPatePers, apelMatePers, nombPers, cargPers, contLaboPers, jornLaboPers from personal p inner join asistencia a on p.idPers = a.idPers group by p.dniPers');
+    res.json(personalLista);
+  }
   public async getOnePersonal(req: Request, res: Response): Promise<any> {
     //res.json({text: 'This is a personal' + req.params.id})
     const { id } = req.params;

@@ -244,7 +244,7 @@
           </ul>
         </li>
         <!--Fin de acceso-->
-        <li  *ngIf="USER.tipoUsua == 'Ugel' || USER.tipoUsua == 'Director'" class="nav-header">REPORTES</li>
+        <li  *ngIf=" USER.tipoUsua == 'Director'" class="nav-header">REPORTES</li>
         <li *ngIf="USER.tipoUsua == 'Director'" class="nav-item">
           <a [routerLink]="['/reporte-asistencia']" class="nav-link">
             <i class="nav-icon fas fa-list-alt"></i>
